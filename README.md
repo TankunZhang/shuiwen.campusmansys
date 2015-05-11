@@ -1,0 +1,2 @@
+# shuiwen.campusmansys
+CampusManSys
