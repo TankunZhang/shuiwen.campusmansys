@@ -44,7 +44,7 @@ $("document").ready(function() {
 				if(data!=-1){
 					alert("班级添加成功");
 					$('#btneditCance').click();
-					$("#content").load("banji.html");
+					$("#content").load("kecheng.html");
 				}
 			}
 		});
@@ -172,7 +172,7 @@ $("document").ready(function() {
 				if(data!=-1){
 					alert("班级修改成功");
 					$('#btneditCance').click();
-					$("#content").load("banji.html");
+					$("#content").load("kecheng.html");
 					
 				}
 				
@@ -204,7 +204,7 @@ $("document").ready(function() {
 				if(data!=-1){
 					alert("班级删除成功");
 					$('#btneditCance').click();
-					$("#content").load("banji.html");
+					$("#content").load("kecheng.html");
 				}
 				
 			}     			
@@ -214,7 +214,7 @@ $("document").ready(function() {
 	
 	$('#addkemuSubmit').click(function(){
 		var km_mingzi = $('#km_mingzi').val();
-
+		if(km_mingzi.length>0){
 		$.ajax({
 			type : "GET" ,
 			contentType : "application/json" ,      				
@@ -225,13 +225,16 @@ $("document").ready(function() {
 				if(data!=-1){
 					alert("科目添加成功");
 					$('#addkemuCance').click();
-					$("#content").load("banji.html");
+					$("#content").load("kecheng.html");
 //					jQuery('#collapseOne').prepend("<div class='widget-content' id="+data.id+">"+data.km_mingzi+"</div>");
 					
 //					
 				}
 			}
 		});
+		}else{
+			alert("请输入科目");
+		}
 	});
 	
 	$('#bj_mingzi').click(function(){

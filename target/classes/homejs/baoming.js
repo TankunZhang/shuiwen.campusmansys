@@ -274,7 +274,8 @@ $("document").ready(function() {
 					var data = validJson(resultdata);
 					if(data!=-1){
 						alert("选课成功");
-						$("#content").load("baoming.html");
+//						$("#content").load("baoming.html");
+						$("#banji_gl").click();
 					}
 				}
 			});

@@ -1,5 +1,5 @@
 $("document").ready(function() {
-	
+	val = xiaoquid = $('#indexxiaoqu').val();
 	$.ajax({
 		type : "POST" ,
 		contentType : "application/json;charset=utf-8" ,      				
@@ -9,7 +9,13 @@ $("document").ready(function() {
 			var data = validJson(resultdata);
 			if(data!=0){
 				$.each(data, function (i, item) { 
-					jQuery("#xiaoquid").append("<option value="+ item.id+">"+ item.suoxie+"</option>");
+					if(xiaoquid>0){
+					if(xiaoquid ==item.id){
+						jQuery("#xiaoquid").append("<option value="+ item.id+">"+ item.suoxie+"</option>");
+					}
+					}else{
+						jQuery("#xiaoquid").append("<option value="+ item.id+">"+ item.suoxie+"</option>");
+					}
 				});
 			}
 		}
@@ -178,6 +184,7 @@ val = xiaoquid = $('#indexxiaoqu').val();
 	
 	$('#addxuesheng').click(function() {
 		$("#id").val(-1);
+		
 		$('#xingming').val("");
 		$('#cs_riqi').val("");
 		$('#dizhi').val("");
