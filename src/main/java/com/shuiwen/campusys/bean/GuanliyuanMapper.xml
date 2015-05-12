@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="GuanliyuanMapper">
+    <select id="validGuanliyuan" parameterType="com.shuiwen.campusys.bean.Guanliyuan" resultType="int">
+       select count(*)
+       from GUANLIYUAN
+       where GLY_MINGZI = #{gly_mingzi} and MIMA=#{mima}
+    </select>
+
+    <select id="findAllGuanliyuans" resultType="com.shuiwen.campusys.bean.Guanliyuan">
+        select *
+        from GUANLIYUAN
+    </select>
+    
+    <select id="findGuanliyuanByID" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Guanliyuan">
+        select id,gly_mingzi,mima,quanxian
+        from GUANLIYUAN where id = #{id}
+    </select>
+
+    <update id="updateGuanliyuan" parameterType="hashmap">
+	      update GUANLIYUAN
+	      set GLY_MINGZI=#{gly_mingzi},
+	      MIMA = #{mima},
+	      QUANXIAN = #{quanxian}
+	      SCDL_SHIJIAN = #{scdl_shijian}
+	      ZC_SHIJIAN = #{zc_shijin}
+	      where ID=#{id}
+	</update>
+	
+	<insert id="insertGuanliyuan" parameterType="com.shuiwen.campusys.bean.Guanliyuan">
+       insert into GUANLIYUAN (gly_mingzi, mima, quanxian, scdl_shijian, zc_shijian)
+       values (#{gly_mingzi}, #{mima}, #{quanxian}, #{scdl_shijian}, #{zc_shijian})
+    </insert>
+
+	<delete id="deleteGuanliyuan" parameterType="hashmap">
+	    delete from GUANLIYUAN where ID=#{id}
+	</delete>
+
+</mapper>

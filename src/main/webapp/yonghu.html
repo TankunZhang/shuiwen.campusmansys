@@ -1,0 +1,96 @@
+
+<!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+  </div>
+
+
+	  <a id="addyonghu" data-toggle="modal" href="#edityonghu" class="btn btn-info btn-large">
+			<i class="icon-plus icon-white"></i>添加用户</a>
+
+<!--Action boxes-->
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+       <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Data table</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="GuanliyuansTable" class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>姓名</th>
+                  <th>密码</th>
+                  <th>上次登录时间</th>
+                  <th>注册时间</th>
+                  <th>权限</th>
+                  <th>修改</th>
+                  <th>删除</th>
+                </tr>
+              </thead>
+              <tbody id="GuanliyuansTBody">
+               <tr id="GuanliyuansInfoTR" class="gradeA">
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td ><a data-toggle="modal" href="#edityonghu" class="btn btn-warning">修改</a></td>
+ 				  <td><button id="ceshi" data-toggle="modal" class="btn btn-success">删除</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal hide" id="edityonghu">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <div class="modal-body">
+          <!-- table -->
+          <div>
+     <form action="#" method="post" class="form-horizontal" id="formEditUser" name="formEditUser">
+      <div class="control-group hide">
+         <label class="control-label">ID :</label>
+         <div class="controls">
+           <input id="id" name="id" type="text" placeholder="" />
+         </div>
+       </div>
+       <div class="control-group">
+         <label class="control-label">用户名 :</label>
+         <div class="controls">
+           <input id="gly_mingzi" name="gly_mingzi" type="text" placeholder="" />
+         </div>
+       </div>
+       <div class="control-group">
+         <label class="control-label">密码 :</label>
+         <div class="controls">
+           <input id="mima" name="mima" type="text" placeholder="" />
+         </div>
+       </div>
+       <div class="control-group">
+         <label class="control-label">权限 :</label>
+         <div class="controls">
+           <input id="quanxian" name="quanxian" type="text" placeholder=""  />
+         </div>
+       </div>
+     </form>
+   </div>
+           <!-- table -->
+           </div>
+           <div class="modal-footer">
+           	<a href="#" id="btneditCance" class="btn" data-dismiss="modal">取消</a> 
+        	<a href="#" id="btneditSubmit" class="btn btn-primary">保存修改</a> 
+        	<a href="#" id="btnaddSubmit" class="btn btn-primary hide">增加</a> 
+           </div>
+         </div>
+
+<script src="homejs/yonghu.js"></script> 
+

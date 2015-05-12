@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>信息管理系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/uniform.css" />
+<link rel="stylesheet" href="css/select2.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+
+<link rel="stylesheet" href="css/colorpicker.css" />
+<link rel="stylesheet" href="css/datepicker.css" />
+
+
+
+
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">MatAdmin</a></h1>
+</div>
+<!--close-Header-part-->
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">欢迎Admin</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="#"><i class="icon-user"></i> 我的资料</a></li>
+        <li class="divider"></li>
+        <li><a href="#"><i class="icon-check"></i> 我的任务</a></li>
+        <li class="divider"></li>
+        <li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
+      </ul>
+    </li>
+    <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> 新消息</a></li>
+        <li class="divider"></li>
+        <li><a class="sInbox" title="" href="#"><i class="icon-envelope"></i> 收件箱</a></li>
+        <li class="divider"></li>
+        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> 发件箱</a></li>
+        <li class="divider"></li>
+        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> 发送</a></li>
+      </ul>
+    </li>
+    <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a></li>
+  </ul>
+</div>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+<div id="search">
+  <select id="indexxiaoqu" class="indexxiaoqu" >
+     	<option value='-1' selected="selected">选择校区</option>
+   	</select>
+</div>
+
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 控制台</a>
+  <ul>
+    <li id="shouye" onclick="openpage('shouye.html','shouye')" class="active"><a href="#"><i class="icon icon-home"></i> <span>首页</span></a> </li>
+    <li id="xiaoqu_gl" onclick="openpage('xiaoqu.html','xiaoqu_gl')"><a href="#"><i class="icon icon-signal"></i> <span>校区管理</span></a> </li>
+    <li id="kecheng_gl" onclick="openpage('kecheng.html','kecheng_gl')"><a href="#"><i class="icon icon-inbox"></i> <span>课程管理</span></a> </li>
+    <li id="banji_gl" onclick="openpage('banji.html','banji_gl')"><a href="#"><i class="icon icon-pencil"></i><span>班级管理</span></a> </li>
+    <li id="xuesheng_gl" onclick="openpage('xuesheng.html','xuesheng_gl')"><a href="#"><i class="icon icon-th"></i> <span>学生管理</span></a></li>
+    <li id="yonghu_gl" onclick="openpage('yonghu.html','yonghu_gl')"><a href="#"><i class="icon icon-fullscreen"></i> <span>用户管理</span></a></li>
+    <li id="baoming_gl" onclick="openpage('baoming.html','baoming_gl')"><a href="#"><i class="icon icon-tint"></i> <span>报名管理</span></a></li>
+    <li><a href="#"><i class="icon icon-pencil"></i> <span>组件</span></a></li>
+    
+    <li class="submenu"> <a href="#"><i class="icon icon-info-sign"></i> <span>错误页面</span> </a>
+      <ul>
+        <li><a href="error403.html">403错误页面</a></li>
+        <li><a href="error404.html">404错误页面</a></li>
+        <li><a href="error405.html">05错误页面</a></li>
+        <li><a href="error500.html">500错误页面</a></li>
+      </ul>
+    </li>
+    
+  </ul>
+</div>
+<!--sidebar-menu-->
+
+<!--main-container-part-->
+<div id="content">
+
+</div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2013 &copy; MatAdmin. </div>
+</div>
+
+<!--end-Footer-part-->
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/jquery.dataTables.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.tables.js"></script>
+<script src="homejs/index.js"></script>
+
+
+<script src="js/bootstrap-colorpicker.js"></script> 
+<script src="js/bootstrap-datepicker.js"></script> 
+<script src="js/jquery.toggle.buttons.html"></script> 
+<script src="js/masked.js"></script> 
+<script src="js/matrix.form_common.js"></script> 
+<script src="js/jquery.peity.min.js"></script> 
+
+<script type="text/javascript">
+	$("#content").load("shouye.html");
+function openpage(pageurl,pageid){
+
+	$("#content").load(pageurl);
+
+	document.getElementById('shouye').className="";
+	document.getElementById('xuesheng_gl').className="";
+	document.getElementById('xiaoqu_gl').className="";
+	document.getElementById('kecheng_gl').className="";
+	document.getElementById('banji_gl').className="";
+	document.getElementById('yonghu_gl').className="";
+	document.getElementById('baoming_gl').className="";
+	document.getElementById(pageid).className="active";
+}
+</script>
+
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+</script>
+</body>
+</html>

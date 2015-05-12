@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="JiaoshiMapper">
+    
+    <select id="findAllJiaoshis" resultType="com.shuiwen.campusys.bean.Jiaoshi">
+        select *
+        from JIAOSHI
+    </select>
+
+    <update id="updateJiaoshi" parameterType="hashmap">
+	      update JIAOSHI
+	      set XINGMING=#{xingming},
+	      ZHIWU = #{zhiwu},
+	      SHOUKEZHUANYE = #{shoukezhuanye}
+	      SHOUKEBANJI = #{shoukebanji}
+	      KESHIBIAOZHUN = #{keshibiaozhun}
+	      LEIXING = #{leixing}
+	      where ID=#{id}
+	</update>
+	
+	<insert id="insertJiaoshi" parameterType="com.shuiwen.campusys.bean.Jiaoshi">
+       INSERT INTO jiaoshi (xingming, zhiwu, shoukezhuanye, shoukebanji, keshibiaozhun, leixing)
+       VALUES (#{xingming}, #{zhiwu}, #{shoukezhuanye}, #{shoukebanji}, #{keshibiaozhun}, #{leixing})
+    </insert>
+
+	<delete id="deleteJiaoshi" parameterType="hashmap">
+	    delete from JIAOSHI where ID=#{id}
+	</delete>
+
+</mapper>

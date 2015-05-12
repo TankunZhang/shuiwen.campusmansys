@@ -1,0 +1,234 @@
+
+
+
+<div id="content-header">
+  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Form elements</a> <a href="#" class="current">Common elements</a> </div>
+  <h1 id="xiaoqutitle">科目课程管理</h1>
+</div>
+  <div align="right">
+    <a id="addbanji" data-toggle="modal" href="#editbanji" class="btn btn-info btn-large">添加班级</a>
+    </div>
+<div class="container-fluid">
+
+  <hr>
+  <div class="row-fluid">  
+  <div class="span2">
+       <div class="widget-box">
+    
+		<div class="widget-title">
+			<a data-toggle="collapse" href="#collapseOne" >
+				<span class="icon"><i class="icon-arrow-right"></i></span>
+            	<h5>科目</h5>
+			</a>
+		</div>
+        <div class="collapse out" id="collapseOne">
+          <div class="widget-content" align="center">
+          <a id="beginaddkemu" data-toggle="modal" href="#addkemu" class="btn btn-primary">添加科目</a>
+          </div>
+        </div>
+        </div>
+   </div>
+   		
+  	<div class="span10">
+       <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Data table</h5>
+          </div>
+
+          <div class="widget-content nopadding">
+            <table id="banjisInfoTable" class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>科目</th>
+                  <th>班级</th>
+                  <th>授课教师</th>
+                  <th>授课时间</th>
+                  <th>课时</th>
+                  <th>开课时间</th>
+                  <th>状态</th>
+                  <th>最佳人数</th>
+                  <th>当前人数</th>
+                  <th>修改</th>
+                  <th>删除</th>
+                </tr>
+              </thead>
+              <tbody>
+               <tr id="banjisInfoTR" class="gradeA">
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td><a id="aeditbanji" data-toggle="modal" href="#editbanji" class="btn btn-warning">修改</a></td>
+ 				  <td><button id="btndeletefrom" data-toggle="modal" class="btn btn-success">删除</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+  
+          
+            
+  </div>
+  </div>
+  
+  <div class="modal hide" id="editbanji">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">×</button>
+       <h3>修改信息</h3>
+     </div>
+     <div class="modal-body">
+       <!-- table -->
+       <div>
+            <form action="#" method="post" class="form-horizontal" id="formEditBanji" name="formEditBanji">
+            <div class="control-group hide">
+              <label class="control-label">ID:</label>
+              <div class="controls">
+                <input id="id" name="id" type="text" class="span3" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">科目 :</label>
+              <div class="controls">
+                <select id="kemuid" name="kemuid" >
+			   	</select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">学期 :</label>
+              <div class="controls">
+                <input id="xueqi" name="xueqi" type="text" class="span3" placeholder="输" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">班级 :</label>
+              <div class="controls">
+                <input id="bj_mingzi" name="bj_mingzi" type="text" class="span3" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">授课教师</label>
+              <div class="controls">
+                <input id="sk_jiaoshi" name="sk_jiaoshi" class="span3" type="text"  />
+              </div>
+            </div>
+            
+			<div class="control-group">
+              <label class="control-label">授课时间 :</label>
+              <div class="controls">
+                <select id="sk_shijian" name="sk_shijian" >
+			     	<option value='星期一' selected="selected">星期一</option>
+			     	<option value='星期二' >星期二</option>
+			     	<option value='星期三' >星期三</option>
+			     	<option value='星期四' >星期四</option>
+			     	<option value='星期五' >星期五</option>
+			     	<option value='星期六' >星期六</option>
+			     	<option value='星期天' >星期天</option>
+			   	</select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">课时 :</label>
+              <div class="controls">
+                <input id="keshi" name="keshi" type="text" class="span3" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">开课时间:</label>
+              <div class="controls">
+                <input id="kk_shijian" name="kk_shijian" class="input-mask-date" type="text" class="span3" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">状态 :</label>
+              <div class="controls">
+                <select id="zhuangtai" name="zhuangtai" >
+			     	<option value='已开班' >已开班</option>
+			     	<option value='未开班' selected="selected">未开班</option>
+			     	<option value='已删除' selected="selected">已删除</option>
+			   	</select>
+			   </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">最佳人数 :</label>
+              <div class="controls">
+                <input id="zd_renshu" name="zd_renshu" type="text" class="span3" placeholder="" />
+              </div>
+            </div>
+            
+          </form>
+		</div>
+        <!-- table -->
+        </div>
+        <div class="modal-footer">
+			<a href="#" id="btneditCance" class="btn" data-dismiss="modal">取消</a> 
+			<a href="#" id="btndeleteSubmit" class="btn btn-success ">删除班级</a>
+        	<a href="#" id="btneditSubmit" class="btn btn-primary">保存修改</a> 
+        	<a href="#" id="btnaddSubmit" class="btn btn-primary hide">增加</a> 
+        </div>
+      </div>
+      
+      <div class="modal hide" id="deletebanji">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">×</button>
+       <h3>删除班级息</h3>
+     </div>
+     <div class="modal-body">
+       <!-- table -->
+       <div>
+            <form action="#" method="post" class="form-horizontal" >
+            <div class="control-group">
+              <label class="control-label">输入序号:</label>
+              <div class="controls">
+                <input id="delid" name="delid" type="text" class="span3" placeholder="" />
+              </div>
+            </div>
+            
+          </form>
+		</div>
+        <!-- table -->
+        </div>
+        <div class="modal-footer">
+			<a href="#" id="btndeleteCance" class="btn" data-dismiss="modal">取消</a> 
+        	<a href="#" id="btndelete" class="btn btn-primary">删除</a> 
+        </div>
+      </div>
+      
+   <div class="modal hide" id="addkemu">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">×</button>
+       <h3>增加科目</h3>
+     </div>
+     <div class="modal-body">
+       <!-- table -->
+       <div>
+            <form action="#" method="post" class="form-horizontal" >
+            <div class="control-group">
+              <label class="control-label">科目名:</label>
+              <div class="controls">
+                <input id="km_mingzi" name="km_mingzi" type="text" class="span3" />
+              </div>
+            </div>
+          </form>
+		</div>
+        <!-- table -->
+        </div>
+        <div class="modal-footer">
+			<a href="#" id="addkemuCance" class="btn" data-dismiss="modal">取消</a> 
+        	<a href="#" id="addkemuSubmit" class="btn btn-primary">增加</a> 
+        </div>
+      </div>
+<!--Footer-part-->
+
+<!--end-Footer-part--> 
+<script src="homejs/kecheng.js"></script> 
+
+

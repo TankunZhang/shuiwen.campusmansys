@@ -1,0 +1,114 @@
+
+<!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 首页</a></div>
+  </div>
+
+	  <!-- <button id="deleteXiaoqu" class="btn btn-primary btn-large">删除</button> -->
+	  <a data-toggle="modal" href="#alertInsertXiaoqu" class="btn btn-info btn-large">
+			<i class="icon-plus icon-white"></i>添加校区</a>
+		              <div class="modal hide" id="alertInsertXiaoqu">
+		                <div class="modal-header">
+		                  <button type="button" class="close" data-dismiss="modal">×</button>
+		                  <h3>添加一个校区</h3>
+		                </div>
+		                <div class="modal-body">
+		                  <!-- table -->
+		                  <div>
+					          <form action="#" method="post" class="form-horizontal" id="formInsertXiaoqu" name="formInsertXiaoqu">
+					            <div class="control-group">
+					              <label class="control-label">校区名 :</label>
+					              <div class="controls">
+					                <input id="xq_mingzi" name="xq_mingzi" type="text" placeholder="输入校区名" />
+					              </div>
+					            </div>
+					            <div class="control-group">
+					              <label class="control-label">缩写 :</label>
+					              <div class="controls">
+					                <input id="suoxie" name="suoxie" type="text" placeholder="缩写" />
+					              </div>
+					            </div>
+					            <div class="control-group">
+					              <label class="control-label">地址:</label>
+					              <div class="controls">
+					                <input id="dizhi" name="dizhi" type="text" placeholder="校区地址"  />
+					              </div>
+					            </div>
+					            <div class="control-group">
+					              <label class="control-label">电话:</label>
+					              <div class="controls">
+					                <input id="dianhua" name="dianhua" type="text" placeholder="校区电话"  />
+					              </div>
+					            </div>
+					          </form>
+					        </div>
+		                   <!-- table -->
+		                </div>
+		                <div class="modal-footer">
+							<a href="#" id="modalCance" class="btn" data-dismiss="modal">取消</a> 
+		                	<a href="#" id="submitInsertXiaoqu" class="btn btn-primary">添加</a> 
+		                </div>
+		              </div>
+
+
+<!--Action boxes-->
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+       <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>校区列表</h5>
+          </div>
+<!-- 
+          <div class="controls">
+                <select multiple >
+                  <option>First option</option>
+                  <option selected>Second option</option>
+                  <option>Third option</option>
+                  <option>Fourth option</option>
+                  <option>Fifth option</option>
+                  <option>Sixth option</option>
+                  <option>Seventh option</option>
+                  <option>Eighth option</option>
+                </select>
+              </div>
+               -->
+          <div class="widget-content nopadding">
+            <table id="tableShowXiaoqus"  class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>校区名</th>
+                  <th>缩写</th>
+                  <th>地址</th>
+                  <th>电话</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyShowXiaoqu">
+               <tr id="trShowXiaoqu" class="gradeA">
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--end-main-container-part-->
+
+
+<!--end-Footer-part-->
+
+<script src="js/jquery.uniform.js"></script> 
+<script src="js/select2.min.js"></script> 
+<script src="js/jquery.dataTables.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.tables.js"></script>
+<script src="homejs/xiaoqu.js"></script> 
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="XueShengMapper">
+
+	<select id="validXueSheng" parameterType="com.shuiwen.campusys.bean.XueSheng" resultType="com.shuiwen.campusys.bean.XueSheng">
+       select *
+       from XUESHENG
+       where XINGMING = #{xingming} and CS_RIQI=#{cs_riqi} and xiaoquid=#{xiaoquid}
+    </select>
+    <select id="findAllXueShengs" resultType="com.shuiwen.campusys.bean.XueSheng">
+        select xs.id,xs.xiaoquid,xq.xq_mingzi,xs.xingming,xs.xingbie,xs.cs_riqi,xs.dizhi,xs.gd_dianhua,xs.mq_shouji,xs.fq_shouji,xs.youeryuan
+        from XUESHENG xs,XIAOQU xq where xs.xiaoquid = xq.id
+    </select>
+    <select id="findAllXueShengsByXiaoqu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.XueSheng">
+        select xs.id,xs.xiaoquid,xq.xq_mingzi,xs.xingming,xs.xingbie,xs.cs_riqi,xs.dizhi,xs.gd_dianhua,xs.mq_shouji,xs.fq_shouji,xs.youeryuan
+        from XUESHENG xs,XIAOQU xq where xs.xiaoquid = xq.id and xs.xiaoquid = #{xiaoquid}
+    </select>
+    <select id="findXueShengByID" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.XueSheng">
+        select xs.id,xs.xiaoquid,xq.xq_mingzi,xs.xingming,xs.xingbie,xs.cs_riqi,xs.dizhi,xs.gd_dianhua,xs.mq_shouji,xs.fq_shouji,xs.youeryuan,xs.zhaopian,xs.jingli,xs.beizhu
+        from XUESHENG xs,XIAOQU xq where xs.xiaoquid = xq.id and xs.id = #{id}
+    </select>
+   
+	<insert id="insertXueSheng" parameterType="com.shuiwen.campusys.bean.XueSheng">
+       insert into XUESHENG (xiaoquid,xingming,xingbie,cs_riqi,dizhi,gd_dianhua,mq_shouji,fq_shouji,youeryuan,zc_shijian,beizhu,zhaopian,jingli)
+       VALUES (#{xiaoquid},#{xingming},#{xingbie},#{cs_riqi},#{dizhi},#{gd_dianhua},#{mq_shouji},#{fq_shouji},#{youeryuan},#{zc_shijian},#{beizhu},#{zhaopian},#{jingli})
+    </insert>
+    
+    <insert id="updateXueSheng" parameterType="com.shuiwen.campusys.bean.XueSheng">
+       update XUESHENG 
+       set xiaoquid=#{xiaoquid},xingming=#{xingming},xingbie=#{xingbie},cs_riqi=#{cs_riqi},dizhi=#{dizhi},gd_dianhua=#{gd_dianhua},mq_shouji=#{mq_shouji},fq_shouji=#{fq_shouji},youeryuan=#{youeryuan},zc_shijian=#{zc_shijian},beizhu=#{beizhu},zhaopian=#{zhaopian},jingli=#{jingli}
+       where id = #{id}
+    </insert>
+
+	<delete id="deleteXueSheng" parameterType="hashmap">
+	    delete from XUESHENG where ID=#{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="XueshengBanjiMapper">
+
+	<select id="validXueshengBanji" parameterType="com.shuiwen.campusys.bean.XueshengBanji" resultType="com.shuiwen.campusys.bean.XueshengBanji">
+       select *
+       from XUESHENG_BANJI
+       where XINGMING = #{xingming} and CS_RIQI=#{cs_riqi} and xiaoquid=#{xiaoquid}
+    </select>
+    <select id="findAllXueshengBanjis" resultType="com.shuiwen.campusys.bean.XueshengBanji">
+        select xsbj.*,xs.xingming,bj.bj_mingzi 
+        from XUESHENG_BANJI xsbj,XUESHENG xs,BANJI bj 
+        where xsbj.xueshengid = xs.id and xsbj.banjiid = bj.id
+    </select>
+    <select id="findAllXueshengBanjisByXiaoqu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.XueshengBanji">
+        select xsbj.*,xs.xingming,bj.bj_mingzi 
+        from xuesheng_banji xsbj,XUESHENG xs,BANJI bj 
+        where xsbj.xueshengid = xs.id and xsbj.banjiid = bj.id and xs.xiaoquid = #{xiaoquid}
+    </select>
+    <select id="findXueshengBanjiByID" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.XueshengBanji">
+        select xs.id,xs.xiaoquid,xq.xq_mingzi,xs.xingming,xs.xingbie,xs.cs_riqi,xs.dizhi,xs.gd_dianhua,xs.mq_shouji,xs.fq_shouji,xs.youeryuan,xs.zhaopian,xs.jingli,xs.beizhu
+        from XUESHENG_BANJI xs,XIAOQU xq where xs.xiaoquid = xq.id and xs.id = #{id}
+    </select>
+   
+	<insert id="insertXueshengBanji" parameterType="com.shuiwen.campusys.bean.XueshengBanji">
+       insert into XUESHENG_BANJI (xueshengid,banjiid,shoukuanren)
+       values(#{xueshengid},#{banjiid},#{shoukuanren})
+       <!-- 好方法，却不能用 
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.xueshengid},#{item.banjiid},#{item.shoukuanren})
+        </foreach>
+        -->
+    </insert>
+    
+    <insert id="updateXueshengBanji" parameterType="com.shuiwen.campusys.bean.XueshengBanji">
+       update XUESHENG_BANJI 
+       set xiaoquid=#{xiaoquid},xingming=#{xingming},xingbie=#{xingbie},cs_riqi=#{cs_riqi},dizhi=#{dizhi},gd_dianhua=#{gd_dianhua},mq_shouji=#{mq_shouji},fq_shouji=#{fq_shouji},youeryuan=#{youeryuan},zc_shijian=#{zc_shijian},beizhu=#{beizhu},zhaopian=#{zhaopian},jingli=#{jingli}
+       where id = #{id}
+    </insert>
+
+	<delete id="deleteXueshengBanji" parameterType="hashmap">
+	    delete from XUESHENG_BANJI where ID=#{id}
+	</delete>
+
+</mapper>

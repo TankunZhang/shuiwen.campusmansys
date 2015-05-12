@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/mvc   
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.shuiwen.*" />
+
+    <context:property-placeholder location="classpath:campusys.properties" />
+    
+    <util:list id="mapperLocation" value-type="org.springframework.core.io.Resource">
+    <!-- 
+       <value>classpath:com/shuiwen/campusys/bean/UserInfoReportMapper.xml</value>
+       <value>classpath:com/shuiwen/campusys/bean/BusinessReportMapper.xml</value>
+       <value>classpath:com/shuiwen/campusys/bean/PayReportMapper.xml</value>
+       <value>classpath:com/shuiwen/campusys/bean/ProvinceReportMapper.xml</value>
+    -->
+    	<value>classpath:com/shuiwen/campusys/bean/XueShengMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/GuanliyuanMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/JiaoshiMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/KechengMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/XiaoquMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/BanjiMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/KemuMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/XueshengBanjiMapper.xml</value>
+    </util:list>
+<!-- 
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+        <property name="maxActive" value="100" />
+        <property name="maxIdle" value="30" />
+        <property name="maxWait" value="500" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" ref="mapperLocation" />
+	</bean>
+	
+	<bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="${url1}" />
+        <property name="username" value="${username1}" />
+        <property name="password" value="${password1}" />
+		<property name="maxActive" value="100" />
+		<property name="maxIdle" value="30" />
+		<property name="maxWait" value="500" />
+	</bean>
+
+	<bean id="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource1" />
+        <property name="mapperLocations" ref="mapperLocation" /> 
+	</bean>
+	
+	<bean id="dataSource2" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="${url2}" />
+        <property name="username" value="${username2}" />
+        <property name="password" value="${password2}" />
+		<property name="maxActive" value="100" />
+		<property name="maxIdle" value="30" />
+		<property name="maxWait" value="500" />
+	</bean>
+
+	<bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2" />
+        <property name="mapperLocations" ref="mapperLocation" /> 
+	</bean>
+ -->
+ <!-- <bean id="dataSource3" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+ 	<property name="jndiName">
+ 		<value>java:comp/env/jdbc/campusmansys</value>
+ 	</property>
+</bean> 
+ -->
+
+	<bean id="dataSource3" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="${url3}" />
+        <property name="username" value="${username3}" />
+        <property name="password" value="${password3}" />
+        <property name="maxActive" value="100" />
+        <property name="maxIdle" value="30" />
+        <property name="maxWait" value="500" />
+	</bean>
+	<bean id="sqlSessionFactory3" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource3" />
+		<property name="mapperLocations" ref="mapperLocation" />
+	</bean>
+	
+	<!-- 
+	<bean id="businessReportDAO" class="com.shuiwen.campusys.dao.impl.BusinessReportDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>
+	</bean>
+	
+	<bean id="payReportDAO" class="com.shuiwen.campusys.dao.impl.PayReportDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory2"/>
+	</bean>
+	
+	<bean id="provinceReportDAO" class="com.shuiwen.campusys.dao.impl.ProvinceReportDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	 -->
+	<bean id="xueshengDAO" class="com.shuiwen.campusys.dao.impl.XueShengDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	<bean id="guanliyuanDAO" class="com.shuiwen.campusys.dao.impl.GuanliyuanDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	<bean id="jiaoshiDAO" class="com.shuiwen.campusys.dao.impl.JiaoshiDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	<bean id="kechengDAO" class="com.shuiwen.campusys.dao.impl.KechengDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	<bean id="xiaoquDAO" class="com.shuiwen.campusys.dao.impl.XiaoquDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	<bean id="banjiDAO" class="com.shuiwen.campusys.dao.impl.BanjiDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	<bean id="kemuDAO" class="com.shuiwen.campusys.dao.impl.KemuDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	<bean id="xueshengbanjiDAO" class="com.shuiwen.campusys.dao.impl.XueshengBanjiDAOImpl">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
+	</bean>
+	
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<!-- 
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" /> -->
+
+	<bean  class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >
+	    <property name="messageConverters">
+	         <list>
+	             <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
+	                <property name = "supportedMediaTypes">
+	                     <list>
+	                         <value>text/plain;charset=UTF-8</value>
+	                         <!-- <value>application/json;charset=UTF-8</value>
+	                          -->
+	                     </list>
+	                </property>
+	             </bean>
+	         </list>
+	    </property>
+	</bean>
+</beans>

@@ -1,0 +1,249 @@
+
+
+
+<div id="content-header">
+  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#" class="tip-bottom">Form elements</a> <a href="#" class="current">Common elements</a> </div>
+  <h1 id="xiaoqutitle">报名管理</h1>
+</div>
+<div class="container-fluid" id="topdiv">
+  <hr>
+  <div class="row-fluid">  
+	  <div class="span6">
+	   <div class="widget-box">
+	    <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+            <h5>学生信息</h5>
+            <div align="right">
+    			<a id="add-event" data-toggle="modal" href="#VaildXuesheng" class="btn btn-info">
+				<i class="icon-plus icon-white"></i>校验学生</a>
+    		</div>
+          </div>
+          <div class="widget-content nopadding">
+            <form id="form-wizard" class="form-horizontal" method="post">
+		           	<div class="control-group hide">
+		              <label class="control-label">ID:</label>
+		              <div class="controls">
+		                <input id="id" name="id" type="text" class="span11" value="-1" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group hide">
+		              <label class="control-label">校区 :</label>
+		              <div class="controls">
+		                <input id="xiaoquid" name="xiaoquid" type="text" class="span11" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">学生姓名 :</label>
+		              <div class="controls">
+		                <input id="xingming" name="xingming" type="text" class="span11" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">性别 :</label>
+		              <div class="controls">
+		                <select id="xingbie" name="xingbie" >
+					     	<option value='男' selected="selected">男</option>
+					     	<option value='女'>女</option>
+					   	</select>
+					   	</div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">出生日期</label>
+		              <div class="controls">
+		                <input id="cs_riqi" name="cs_riqi" type="text"  class="input-mask-date span11" placeholder=""  />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">幼儿园</label>
+		              <div class="controls">
+		                <input id="youeryuan" name="youeryuan" type="text"  class="span11" placeholder=""  />
+		              </div>
+		            </div>
+					<div class="control-group">
+		              <label class="control-label">地址 :</label>
+		              <div class="controls">
+		                <input id="dizhi" name="dizhi" type="text" class="span11" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">固定电话 :</label>
+		              <div class="controls">
+		                <input id="gd_dianhua" name="gd_dianhua" type="text" class="span11" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">母亲电话:</label>
+		              <div class="controls">
+		                <input id="mq_shouji" name="mq_shouji" type="text" class="span11" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">父亲电话 :</label>
+		              <div class="controls">
+		                <input id="fq_shouji" name="fq_shouji" type="text" class="span11" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">经历 :</label>
+		              <div class="controls">
+		                <input id="jingli" name="jingli" type="text" class="span11" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">备注 :</label>
+		              <div class="controls">
+		                <input id="beizhu" name="beizhu" type="text" class="span11" placeholder="" />
+		              </div>
+		              <div class="controls">
+		                <input id="editstudent" class="btn btn-primary" value="添加此学生"/>
+		              </div>
+		            </div>
+              </form>
+              </div>
+	        </div>
+	   </div>
+	   		
+	  	<div class="span6">
+	       <div class="widget-box">
+	          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+	            <h5>报名课程</h5>
+	              <div align="right">
+    				<a id="addbanji" data-toggle="modal" href="#modaladdkecheng" class="btn btn-info">添加课程</a>
+    				</div>
+	          </div>
+	
+	          <div class="widget-content nopadding">
+	            <table id="tablekecheng" class="table table-bordered data-table">
+	              <thead>
+	                <tr>
+	                  <th>科目</th>
+	                  <th>班级</th>
+	                  <th>学期数</th>
+	                  <th>费用</th>
+	                  <!-- <th>修改</th> -->
+	                  <th>删除</th>
+	                  
+	                </tr>
+	              </thead>
+	              <tbody id="tbodykecheng">
+	             
+	               <tr id="trkecheng" class="gradeA hide">
+	                  <td> </td>
+	                  <td> </td>
+	                  <td> </td>
+	                  <td> </td>
+	                  
+	                  <!-- <td><a id="" data-toggle="modal" href="#editbanji" class="btn btn-warning mini">修改</a></td> -->
+	 				  <td><button id="" data-toggle="modal" class="btn btn-success">删除</button></td>
+	                </tr>
+	              </tbody>
+	            </table>
+	          </div>
+	        </div>
+	       <div class="widget-box">
+	          <div class="widget-title">
+	            <h5>Data table</h5>
+	          </div>
+	
+	          <div class="widget-content nopadding">
+	          <div class="form-horizontal">
+	             <div class="control-group">
+		            <label class="control-label">收款人 :</label>
+		              <div class="controls">
+		                <input id="shoukuanren" name="shoukuanren" type="text" class="span11" placeholder="" />
+		              </div>
+		         </div>
+		         <div class="control-group">
+		              <div class="controls">
+		                <button id="btntijiaoxuanke" class="btn btn-warning" >提交选课</button>
+		              </div>
+		         </div>
+		      </div>
+	          </div>
+	        </div>
+	      
+	    </div>     
+  </div>
+  </div>
+  
+  <div class="modal hide" id="VaildXuesheng">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">×</button>
+       <h3>校验学生</h3>
+     </div>
+     <div class="modal-body">
+       <!-- table -->
+       <div class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">学生姓名 :</label>
+              <div class="controls">
+                <input id="validxingming" name="validxingming" type="text" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">出生日期 :</label>
+              <div class="controls">
+                <input id="validcs_riqi" name="validcs_riqi" class="input-mask-date" type="text" placeholder="" />
+              </div>
+            </div>
+		</div>
+        <!-- table -->
+        </div>
+        <div class="modal-footer">
+		<a href="#" id="ValidCance" class="btn" data-dismiss="modal">取消</a> 
+        	<a href="#" id="ValidSearch" class="btn btn-primary">查询</a> 
+        </div>
+      </div>
+      
+      
+  <div class="modal hide" id="modaladdkecheng">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">×</button>
+       <h3>添加课程</h3>
+     </div>
+     <div class="modal-body">
+       <!-- table -->
+       <div>
+           <form action="#"  id="formaddkecheng" method="post" class="form-horizontal" >
+           <div class="control-group hide">
+              <label class="control-label">ID:</label>
+              <div class="controls">
+                <input id="xuankeid" name="xuankeid" type="text" class="span3" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">科目:</label>
+              <div class="controls">
+                <select id="kemuid" name="kemuid" class="span3" >
+              		</select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">课程:</label>
+              <div class="controls">
+                <select id="banjiid" name="banjiid" class="span3" >
+          		</select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">学期数:</label>
+              <div class="controls">
+                <input id="xueqishu" name="xueqishu" type="text" class="span3" placeholder="" />
+              </div>
+           </div>
+          </form>
+		</div>
+        <!-- table -->
+        </div>
+        <div class="modal-footer">
+			<a href="#" id="btnaddkechengcancle" class="btn" data-dismiss="modal">取消</a> 
+        	<a id="btnaddkecheng" class="btn btn-primary">添加</a> 
+        </div>
+   </div>
+   
+      
+<!--Footer-part-->
+
+<!--end-Footer-part--> 
+<script src="homejs/baoming.js"></script> 
+
+

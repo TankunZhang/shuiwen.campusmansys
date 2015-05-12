@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="BanjiMapper">
+
+	
+    <select id="findAllBanjis" resultType="com.shuiwen.campusys.bean.Banji">
+        select bj.*,km_mingzi 
+        from BANJI bj,KEMU km 
+        where bj.kemuid=km.id
+    </select>
+    <select id="findAllBanjisByXiaoqu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Banji">
+        select bj.*,km.km_mingzi 
+        from BANJI bj,KEMU km 
+        where bj.kemuid in (select id from KEMU where xiaoquid=#{xiaoquid}) 
+        and bj.kemuid=km.id
+    </select>
+    <select id="findBanjiByID" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Banji">
+        select *
+        from BANJI where id = #{id}
+    </select>
+    <select id="findBanjiByKemu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Banji">
+        select *
+        from BANJI where kemuid = #{kemuid}
+    </select>
+   
+	<insert id="insertBanji" parameterType="com.shuiwen.campusys.bean.Banji">
+       insert into BANJI (kemuid,xueqi,bj_mingzi,sk_jiaoshi,sk_shijian,keshi,kk_shijian,zhuangtai,zd_renshu)
+       VALUES (#{kemuid},#{xueqi},#{bj_mingzi},#{sk_jiaoshi},#{sk_shijian},#{keshi},#{kk_shijian},#{zhuangtai},#{zd_renshu})
+    </insert>
+    
+    <update id="updateBanji" parameterType="com.shuiwen.campusys.bean.Banji">
+       update BANJI 
+       set kemuid=#{kemuid},xueqi=#{xueqi},bj_mingzi=#{bj_mingzi},sk_jiaoshi=#{sk_jiaoshi},sk_shijian=#{sk_shijian},keshi=#{keshi},kk_shijian=#{kk_shijian},zhuangtai=#{zhuangtai},zd_renshu=#{zd_renshu}
+       where id = #{id}
+    </update>
+    
+    <update id="insertBanjiXueSheng" parameterType="int">
+       update BANJI 
+       set dq_renshu = dq_renshu+1
+		where id = #{banjiid}
+    </update>
+
+	<delete id="deleteBanji" parameterType="hashmap">
+	    delete from BANJI where ID=#{id}
+	</delete>
+	
+	<update id="deleteBanjiNow" parameterType="hashmap">
+       update BANJI 
+       set zhuangtai='已删除'
+       where id = #{id}
+    </update>
+
+</mapper>

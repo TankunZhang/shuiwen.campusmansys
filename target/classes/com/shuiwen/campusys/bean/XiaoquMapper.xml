@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="XiaoquMapper">
+    
+    <select id="findAllXiaoqus" resultType="com.shuiwen.campusys.bean.Xiaoqu">
+        select *
+        from XIAOQU
+    </select>
+
+    <update id="updateXiaoqu" parameterType="hashmap">
+	      update XIAOQU
+	      set XQ_MINGZI=#{xq_mingzi},
+	      SUOXIE = #{suoxie}
+	      DIZHI = #{dizhi}
+	      DIANHUA = #{dianhua}
+	      where ID=#{id}
+	</update>
+	
+	<insert id="insertXiaoqu" parameterType="com.shuiwen.campusys.bean.Xiaoqu">
+       insert into XIAOQU (XQ_MINGZI, SUOXIE, DIZHI, DIANHUA)
+       values (#{xq_mingzi}, #{suoxie}, #{dizhi}, #{dianhua})
+    </insert>
+
+	<delete id="deleteXiaoqu" parameterType="hashmap">
+	    delete from XIAOQU where ID=#{id}
+	</delete>
+	<select id="findXiaoquBySuoxie" parameterType="com.shuiwen.campusys.bean.Xiaoqu" resultType="com.shuiwen.campusys.bean.Xiaoqu">
+        select *
+        from XIAOQU where suoxie=#{suoxie}
+    </select>
+
+</mapper>

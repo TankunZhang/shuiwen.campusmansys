@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="KemuMapper">
+
+    <select id="findAllKemus" resultType="com.shuiwen.campusys.bean.Kemu">
+        select km.*,xq.xq_mingzi
+		from KEMU km,XIAOQU xq 
+		where km.xiaoquid=xq.id
+    </select>
+    <select id="findAllKemusByXiaoqu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Kemu">
+        select km.*,xq.xq_mingzi
+		from KEMU km,XIAOQU xq 
+		where km.xiaoquid=xq.id and xq.id=#{xiaoquid}
+    </select>
+    <select id="findKemuByID" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Kemu">
+        select xs.id,xs.xiaoquid,xq.xq_mingzi,xs.xingming,xs.xingbie,xs.cs_riqi,xs.dizhi,xs.gd_dianhua,xs.mq_shouji,xs.fq_shouji,xs.youeryuan,xs.zhaopian,xs.jingli,xs.beizhu
+        from KEMU xs,XIAOQU xq where xs.xiaoquid = xq.id and xs.id = #{id}
+    </select>
+   
+	<insert id="insertKemu" parameterType="com.shuiwen.campusys.bean.Kemu">
+       insert into KEMU (xiaoquid,km_mingzi)
+       VALUES (#{xiaoquid},#{km_mingzi})
+    </insert>
+    <select id="maxKemuID" resultType="int">
+       select max(id) from KEMU
+    </select>
+    
+    <insert id="updateKemu" parameterType="com.shuiwen.campusys.bean.Kemu">
+       update KEMU 
+       set xiaoquid=#{xiaoquid},xingming=#{xingming},xingbie=#{xingbie},cs_riqi=#{cs_riqi},dizhi=#{dizhi},gd_dianhua=#{gd_dianhua},mq_shouji=#{mq_shouji},fq_shouji=#{fq_shouji},youeryuan=#{youeryuan},zc_shijian=#{zc_shijian},beizhu=#{beizhu},zhaopian=#{zhaopian},jingli=#{jingli}
+       where id = #{id}
+    </insert>
+
+	<delete id="deleteKemu" parameterType="hashmap">
+	    delete from KEMU where ID=#{id}
+	</delete>
+
+</mapper>

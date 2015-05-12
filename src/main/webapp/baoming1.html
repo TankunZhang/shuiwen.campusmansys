@@ -1,0 +1,277 @@
+<meta charset="UTF-8" />
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Form elements</a> <a href="#" class="current">Form wizard</a> </div>
+    <h1 id="xiaoqutitle">报名管理</h1>
+  </div>
+  <div class="container-fluid" id="topdiv"><hr>
+    <div class="row-fluid">
+    <a id="add-event" data-toggle="modal" href="#VaildXuesheng" class="btn btn-info btn-large">
+			<i class="icon-plus icon-white"></i>校验学生</a>
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-pencil"></i> </span>
+            <h5>Form wizard &amp; validation</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <form id="form-wizard" class="form-horizontal" method="post">
+              <div id="form-wizard-1" class="step">
+		           	<div class="control-group hide">
+		              <label class="control-label">ID:</label>
+		              <div class="controls">
+		                <input id="id" name="id" type="text" class="span3" value="-1" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group hide">
+		              <label class="control-label">校区 :</label>
+		              <div class="controls">
+		                <input id="xiaoquid" name="xiaoquid" type="text" class="span3" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">学生姓名 :</label>
+		              <div class="controls">
+		                <input id="xingming" name="xingming" type="text" class="span3" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">性别 :</label>
+		              <div class="controls">
+		                <select id="xingbie" name="xingbie" >
+					     	<option value='男' selected="selected">男</option>
+					     	<option value='女' selected="selected">女</option>
+					   	</select>
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">出生日期</label>
+		              <div class="controls">
+		                <input id="cs_riqi" name="cs_riqi" type="text"  class="input-mask-date span3" placeholder=""  />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">幼儿园</label>
+		              <div class="controls">
+		                <input id="youeryuan" name="youeryuan" type="text"  class="span3" placeholder=""  />
+		              </div>
+		            </div>
+					<div class="control-group">
+		              <label class="control-label">地址 :</label>
+		              <div class="controls">
+		                <input id="dizhi" name="dizhi" type="text" class="span3" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">固定电话 :</label>
+		              <div class="controls">
+		                <input id="gd_dianhua" name="gd_dianhua" type="text" class="span3" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">母亲电话:</label>
+		              <div class="controls">
+		                <input id="mq_shouji" name="mq_shouji" type="text" class="span3" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">父亲电话 :</label>
+		              <div class="controls">
+		                <input id="fq_shouji" name="fq_shouji" type="text" class="span3" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">经历 :</label>
+		              <div class="controls">
+		                <input id="jingli" name="jingli" type="text" class="span3" placeholder="" />
+		              </div>
+		            </div>
+		            <div class="control-group">
+		              <label class="control-label">备注 :</label>
+		              <div class="controls">
+		                <input id="beizhu" name="beizhu" type="text" class="span3" placeholder="" />
+		              </div>
+		              <div class="controls">
+		                <input id="editstudent" class="btn btn-warning" value="添加此学生"/>
+		              </div>
+		            </div>
+              </div>
+              
+              <div id="form-wizard-2" class="step">
+                <div class="row-fluid">  
+				  <div class="span10">
+				       <div class="widget-box">
+				          <div class="widget-title"> <h5>起坤</h5> </div>
+			          	<div class="widget-content nopadding">
+				            <table id="banjisInfoTable" class="table table-bordered data-table">
+				              <thead>
+				                <tr>
+				                  <th>科目</th>
+				                  <th>课程</th>
+				                  <th>学期数</th>
+				                  <th>学费</th>
+				                  
+				                </tr>
+				              </thead>
+				              <tbody>
+				               <tr id="banjisInfoTR" class="gradeA">
+				                  <td> </td>
+				                  <td> </td>
+				                  <td> </td>
+				                  <td> </td>
+				                </tr>
+				              </tbody>
+				            </table>
+			              </div>
+			            </div>
+			           </div>
+			           
+	          	</div>
+	          </div>
+              
+            <div id="form-wizard-3" class="step">
+              <div class="control-group">
+              	<label class="control-label">选择课程数</label>
+              	<div class="controls">
+                	<select id="classcount" name="classcount"class="span3">
+                  	<option value='1' selected="selected" >1</option>
+                 	 <option value='2'>2</option>
+                 	 <option value='3'>3</option>
+               	  	 <option value='4'>4</option>
+                	</select>
+              	</div>
+              </div>
+               
+            <div id="classdiv1" class="control-group">
+                 <label class="control-label">选择科目</label>
+                 <div class="controls">
+                    <select id="kemu1" class="span2">
+               		</select>
+               		->选择初始班级：
+               		<select id="banji1" class="span2" >
+               		</select>
+               		->选择学期：
+	               	<select id="classtime1" class="span1" >
+                 		<option value='1' selected="selected">1</option>
+                 		<option value='2'>2</option>
+                 		<option value='3'>3</option>
+                 		<option value='4'>4</option>
+	               	</select>
+                 </div>
+               </div>
+               <div id="classdiv2" class="control-group hide">
+                 <label class="control-label">选择科目</label>
+                 <div class="controls">
+                    <select id="kemu2" class="span2" >
+               		</select>
+               		->选择初始班级：
+               		<select id="banji2" class="span2" >
+               		</select>
+               		->选择学期：
+	               	<select id="classtime2" class="span1" >
+                 		<option value='1' selected="selected">1</option>
+                 		<option value='2'>2</option>
+                 		<option value='3'>3</option>
+                 		<option value='4'>4</option>
+	               	</select>
+                 </div>
+               </div>
+                <div id="classdiv3" class="control-group hide">
+                 <label class="control-label">选择科目</label>
+                 <div class="controls">
+                    <select id="kemu3" class="span2" >
+               		</select>
+               		->选择初始班级：
+               		<select id="banji3" class="span2" >
+               		</select>
+               		->选择学期：
+	               	<select id="classtime4" class="span1" >
+                 		<option value='1' selected="selected">1</option>
+                 		<option value='2'>2</option>
+                 		<option value='3'>3</option>
+                 		<option value='4'>4</option>
+	               	</select>
+                 </div>
+               </div>
+               <div id="classdiv4" class="control-group hide">
+                 <label class="control-label">选择科目</label>
+                 <div class="controls">
+                    <select id="kemu4" class="span2" >
+               		</select>
+               		->选择初始班级：
+               		<select id="banji4" class="span2" >
+               		</select>
+               		->选择学期：
+	               	<select id="classtime4" class="span1" >
+                 		<option value='1' selected="selected">1</option>
+                 		<option value='2'>2</option>
+                 		<option value='3'>3</option>
+                 		<option value='4'>4</option>
+	               	</select>
+                 </div>
+               </div>
+                
+                <div class="control-group">
+                  <label class="control-label">收款人：</label>
+                  <div class="controls">
+                    <input id="shoukuanren" type="text" name="shoukuanren" />
+                  </div>
+                </div>
+                
+                <div class="control-group">
+                  <label class="control-label"></label>
+                  <div class="controls">
+                    <div id="accounts" class="btn btn-large">提交选课</div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="form-actions">
+                <input id="back" class="btn btn-primary" type="reset" value="Back" />
+                <input id="next"  class="btn btn-primary" type="submit" value="Next" />
+                <div id="status"></div>
+              </div>
+              <div id="submitted"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal hide" id="VaildXuesheng">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">×</button>
+       <h3>校验学生</h3>
+     </div>
+     <div class="modal-body">
+       <!-- table -->
+       <div class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">学生姓名 :</label>
+              <div class="controls">
+                <input id="validxingming" name="validxingming" type="text" placeholder="" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">出生日期 :</label>
+              <div class="controls">
+                <input id="validcs_riqi" name="validcs_riqi" class="input-mask-date" type="text" placeholder="" />
+              </div>
+            </div>
+		</div>
+        <!-- table -->
+        </div>
+        <div class="modal-footer">
+		<a href="#" id="ValidCance" class="btn" data-dismiss="modal">取消</a> 
+        	<a href="#" id="ValidSearch" class="btn btn-primary">查询</a> 
+        </div>
+      </div>
+<!--Footer-part-->
+
+<!--end-Footer-part-->
+
+<script src="js/jquery.validate.js"></script> 
+<script src="js/jquery.wizard.js"></script> 
+<script src="js/matrix.wizard.js"></script>
+<script src="homejs/baoming.js"></script>
+
