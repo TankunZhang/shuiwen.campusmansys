@@ -4,11 +4,53 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
     
 <mapper namespace="KechengMapper">
-    
-    <select id="findAllKechengs" resultType="com.shuiwen.campusys.bean.Kecheng">
-        select *
-        from KECHENG
-    </select>
 
+	
+    <select id="findAllKechengs" resultType="com.shuiwen.campusys.bean.Kecheng">
+        select bj.*,km_mingzi 
+        from KECHENG bj,KEMU km 
+        where bj.kemuid=km.id
+    </select>
+    <select id="findAllKechengsByXiaoqu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Kecheng">
+        select bj.*,km.km_mingzi 
+        from KECHENG bj,KEMU km 
+        where bj.kemuid in (select id from KEMU where xiaoquid=#{xiaoquid}) 
+        and bj.kemuid=km.id
+    </select>
+    <select id="findKechengByID" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Kecheng">
+        select *
+        from KECHENG where id = #{id}
+    </select>
+    <select id="findKechengByKemu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Kecheng">
+        select *
+        from KECHENG where kemuid = #{kemuid}
+    </select>
+   
+	<insert id="insertKecheng" parameterType="com.shuiwen.campusys.bean.Kecheng">
+       insert into KECHENG (kemuid,xueqi,bj_mingzi,sk_jiaoshi,sk_shijian,keshi,kk_shijian,zhuangtai,zd_renshu)
+       VALUES (#{kemuid},#{xueqi},#{bj_mingzi},#{sk_jiaoshi},#{sk_shijian},#{keshi},#{kk_shijian},#{zhuangtai},#{zd_renshu})
+    </insert>
     
+    <update id="updateKecheng" parameterType="com.shuiwen.campusys.bean.Kecheng">
+       update KECHENG 
+       set kemuid=#{kemuid},xueqi=#{xueqi},bj_mingzi=#{bj_mingzi},sk_jiaoshi=#{sk_jiaoshi},sk_shijian=#{sk_shijian},keshi=#{keshi},kk_shijian=#{kk_shijian},zhuangtai=#{zhuangtai},zd_renshu=#{zd_renshu}
+       where id = #{id}
+    </update>
+    
+    <update id="insertKechengXueSheng" parameterType="int">
+       update KECHENG 
+       set dq_renshu = dq_renshu+1
+		where id = #{banjiid}
+    </update>
+
+	<delete id="deleteKecheng" parameterType="hashmap">
+	    delete from KECHENG where ID=#{id}
+	</delete>
+	
+	<update id="deleteKechengNow" parameterType="hashmap">
+       update KECHENG 
+       set zhuangtai='已删除'
+       where id = #{id}
+    </update>
+
 </mapper>

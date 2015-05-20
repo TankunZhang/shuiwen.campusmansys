@@ -3,14 +3,12 @@ package com.shuiwen.campusys.service;
 import java.util.HashMap;
 import java.util.List;
 
-import com.alibaba.fastjson.JSONObject;
-import com.shuiwen.campusys.bean.Banji;
-import com.shuiwen.campusys.bean.Guanliyuan;
 import com.shuiwen.campusys.bean.Kecheng;
+import com.shuiwen.campusys.bean.Guanliyuan;
 import com.shuiwen.campusys.bean.Kemu;
 import com.shuiwen.campusys.bean.Xiaoqu;
 import com.shuiwen.campusys.bean.XueSheng;
-import com.shuiwen.campusys.bean.XueshengBanji;
+import com.shuiwen.campusys.bean.XueshengKecheng;
 
 public interface CampusService {
     
@@ -31,14 +29,14 @@ public interface CampusService {
     public int insertXiaoqu(Xiaoqu xiaoqu);
     public Xiaoqu findXiaoquBySuoxie(Xiaoqu xiaoqu);
     
-    public List<Banji> findAllBanjis(HashMap xiaoqumap);
-    public Banji findBanjiByID(HashMap banjiid);
-    public List<Banji> findBanjiByKemu(HashMap kemumap);
-    public int insertBanji(Banji banji);
-    public int updateBanji(Banji banji);
-//    public Banji validBanji(Banji banji);
-    public int deleteBanji(HashMap banjiid);
-    public int deleteBanjiNow(HashMap banjiid);
+    public List<Kecheng> findAllKechengs(HashMap xiaoqumap);
+    public Kecheng findKechengByID(HashMap kechengid);
+    public List<Kecheng> findKechengByKemu(HashMap kemumap);
+    public int insertKecheng(Kecheng kecheng);
+    public int updateKecheng(Kecheng kecheng);
+//    public Kecheng validKecheng(Kecheng kecheng);
+    public int deleteKecheng(HashMap kechengid);
+    public int deleteKechengNow(HashMap kechengid);
     
     public List<Kemu> findAllKemus(HashMap xiaoqumap);
 //    public Kemu findKemuByID(HashMap kemuid);
@@ -47,11 +45,11 @@ public interface CampusService {
 //    public Kemu validKemu(Kemu kemu);
 //    public int deleteKemu(HashMap kemuid);
     
-    public List<XueshengBanji> findAllXueshengBanjis(HashMap xiaoqumap);
-//    public XueshengBanji findXueshengBanjiByID(HashMap xueshengbanjiid);
-    public int insertXueshengBanji(List<XueshengBanji> xueshengbanji);
-//    public int updateXueshengBanji(XueshengBanji xueshengbanji);
-//    public XueshengBanji validXueshengBanji(XueshengBanji xueshengbanji);
-//    public int deleteXueshengBanji(HashMap xueshengbanjiid);
+    public List<XueshengKecheng> findAllXueshengKechengs(HashMap xiaoqumap);
+//    public XueshengKecheng findXueshengKechengByID(HashMap xueshengkechengid);
+    public int insertXueshengKecheng(List<XueshengKecheng> xueshengkecheng);
+//    public int updateXueshengKecheng(XueshengKecheng xueshengkecheng);
+//    public XueshengKecheng validXueshengKecheng(XueshengKecheng xueshengkecheng);
+//    public int deleteXueshengKecheng(HashMap xueshengkechengid);
     
 }

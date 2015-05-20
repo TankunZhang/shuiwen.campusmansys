@@ -4,7 +4,7 @@ public class CacheKecheng {
 	private int id;
 	private int kemuid;
 	private String km_mingzi;
-	private int banjiid;
+	private int kechengid;
 	private String bj_mingzi;
 	private int xueqishu;
 	public int getId() {
@@ -19,11 +19,11 @@ public class CacheKecheng {
 	public void setKemuid(int kemuid) {
 		this.kemuid = kemuid;
 	}
-	public int getBanjiid() {
-		return banjiid;
+	public int getKechengid() {
+		return kechengid;
 	}
-	public void setBanjiid(int banjiid) {
-		this.banjiid = banjiid;
+	public void setKechengid(int kechengid) {
+		this.kechengid = kechengid;
 	}
 	public int getXueqishu() {
 		return xueqishu;

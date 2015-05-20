@@ -14,20 +14,13 @@
     <context:property-placeholder location="classpath:campusys.properties" />
     
     <util:list id="mapperLocation" value-type="org.springframework.core.io.Resource">
-    <!-- 
-       <value>classpath:com/shuiwen/campusys/bean/UserInfoReportMapper.xml</value>
-       <value>classpath:com/shuiwen/campusys/bean/BusinessReportMapper.xml</value>
-       <value>classpath:com/shuiwen/campusys/bean/PayReportMapper.xml</value>
-       <value>classpath:com/shuiwen/campusys/bean/ProvinceReportMapper.xml</value>
-    -->
     	<value>classpath:com/shuiwen/campusys/bean/XueShengMapper.xml</value>
     	<value>classpath:com/shuiwen/campusys/bean/GuanliyuanMapper.xml</value>
     	<value>classpath:com/shuiwen/campusys/bean/JiaoshiMapper.xml</value>
-    	<value>classpath:com/shuiwen/campusys/bean/KechengMapper.xml</value>
     	<value>classpath:com/shuiwen/campusys/bean/XiaoquMapper.xml</value>
-    	<value>classpath:com/shuiwen/campusys/bean/BanjiMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/KechengMapper.xml</value>
     	<value>classpath:com/shuiwen/campusys/bean/KemuMapper.xml</value>
-    	<value>classpath:com/shuiwen/campusys/bean/XueshengBanjiMapper.xml</value>
+    	<value>classpath:com/shuiwen/campusys/bean/XueshengKechengMapper.xml</value>
     </util:list>
 <!-- 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -96,19 +89,6 @@
 		<property name="mapperLocations" ref="mapperLocation" />
 	</bean>
 	
-	<!-- 
-	<bean id="businessReportDAO" class="com.shuiwen.campusys.dao.impl.BusinessReportDAOImpl">
-	   <property name="sqlSessionFactory" ref="sqlSessionFactory1"/>
-	</bean>
-	
-	<bean id="payReportDAO" class="com.shuiwen.campusys.dao.impl.PayReportDAOImpl">
-	   <property name="sqlSessionFactory" ref="sqlSessionFactory2"/>
-	</bean>
-	
-	<bean id="provinceReportDAO" class="com.shuiwen.campusys.dao.impl.ProvinceReportDAOImpl">
-	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
-	 -->
 	<bean id="xueshengDAO" class="com.shuiwen.campusys.dao.impl.XueShengDAOImpl">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
 	</bean>
@@ -118,19 +98,16 @@
 	<bean id="jiaoshiDAO" class="com.shuiwen.campusys.dao.impl.JiaoshiDAOImpl">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
 	</bean>
-	<bean id="kechengDAO" class="com.shuiwen.campusys.dao.impl.KechengDAOImpl">
-	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
-	</bean>
 	<bean id="xiaoquDAO" class="com.shuiwen.campusys.dao.impl.XiaoquDAOImpl">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
 	</bean>
-	<bean id="banjiDAO" class="com.shuiwen.campusys.dao.impl.BanjiDAOImpl">
+	<bean id="kechengDAO" class="com.shuiwen.campusys.dao.impl.KechengDAOImpl">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
 	</bean>
 	<bean id="kemuDAO" class="com.shuiwen.campusys.dao.impl.KemuDAOImpl">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
 	</bean>
-	<bean id="xueshengbanjiDAO" class="com.shuiwen.campusys.dao.impl.XueshengBanjiDAOImpl">
+	<bean id="xueshengkechengDAO" class="com.shuiwen.campusys.dao.impl.XueshengKechengDAOImpl">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory3"/>
 	</bean>
 	

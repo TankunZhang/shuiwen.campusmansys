@@ -1,5 +1,5 @@
 $("document").ready(function() {
-	
+
 	$.ajax({
 		type : "POST" ,
 		contentType : "application/json;charset=utf-8" ,      				
@@ -29,6 +29,6 @@ $("document").ready(function() {
 			alert("系统等待："+resultdata.info);
 			return 0;
 		}
-		
 	}
+	var asd = 3;
 });

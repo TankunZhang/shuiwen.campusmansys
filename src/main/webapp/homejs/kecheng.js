@@ -214,27 +214,38 @@ $("document").ready(function() {
 	
 	$('#addkemuSubmit').click(function(){
 		var km_mingzi = $('#km_mingzi').val();
-		if(km_mingzi.length>0){
-		$.ajax({
-			type : "GET" ,
-			contentType : "application/json" ,      				
-			url : "addsubject?km_mingzi="+km_mingzi+"&xiaoquid="+xiaoquid,
-			dataType : "json" ,       					
-			success : function(resultdata){
-				var data = validJson(resultdata);
-				if(data!=-1){
-					alert("科目添加成功");
-					$('#addkemuCance').click();
-					$("#content").load("kecheng.html");
-//					jQuery('#collapseOne').prepend("<div class='widget-content' id="+data.id+">"+data.km_mingzi+"</div>");
-					
-//					
-				}
-			}
-		});
-		}else{
-			alert("请输入科目");
+		var xueqizhi = $('#xueqizhi').val();
+		var morenkeshi = $('#morenkeshi').val();
+		var danjia = $('#danjia').val();
+		if(km_mingzi.length>0&&xueqizhi.length>0&&morenkeshi.length>0&&danjia.length>0){
+			$('#addkemuCance').click();
+			var kemuhuancun = "{\"km_mingzi\":\""+$('#km_mingzi').val()+"\",\"xueqizhi\":"+$('#xueqizhi').val()+",\"morenkeshi\":"+$('#morenkeshi').val()+",\"danjia\":"+$('#danjia').val()+"}";
+			$("#huancun").val(kemuhuancun);
+			$("#content").load("editkemu.html");
 		}
+		
+//		var km_mingzi = $('#km_mingzi').val();
+//		if(km_mingzi.length>0){
+//		$.ajax({
+//			type : "GET" ,
+//			contentType : "application/json" ,      				
+//			url : "addsubject?km_mingzi="+km_mingzi+"&xiaoquid="+xiaoquid,
+//			dataType : "json" ,       					
+//			success : function(resultdata){
+//				var data = validJson(resultdata);
+//				if(data!=-1){
+//					alert("科目添加成功");
+//					$('#addkemuCance').click();
+//					$("#content").load("kecheng.html");
+////					jQuery('#collapseOne').prepend("<div class='widget-content' id="+data.id+">"+data.km_mingzi+"</div>");
+//					
+////					
+//				}
+//			}
+//		});
+//		}else{
+//			alert("请输入科目");
+//		}
 	});
 	
 	$('#bj_mingzi').click(function(){

@@ -9,27 +9,27 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.shuiwen.campusys.bean.CacheKecheng;
 import com.shuiwen.campusys.bean.Guanliyuan;
-import com.shuiwen.campusys.bean.XueshengBanji;
+import com.shuiwen.campusys.bean.XueshengKecheng;
 
 public class AssistFunUtil {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static List<XueshengBanji>  XueBanjiToList(HashMap xuankes,String shoukuanren,int xueshengid){
-		List<XueshengBanji> reXueshengBanji = new ArrayList<XueshengBanji>();
+	public static List<XueshengKecheng>  XueKechengToList(HashMap xuankes,String shoukuanren,int xueshengid){
+		List<XueshengKecheng> reXueshengKecheng = new ArrayList<XueshengKecheng>();
 		Iterator<Integer> it = xuankes.keySet().iterator();
         while (it.hasNext()) {
             int key = it.next();
             CacheKecheng cachekecheng = (CacheKecheng)xuankes.get(key);
-            XueshengBanji xueshengbanji = new XueshengBanji();
+            XueshengKecheng xueshengkecheng = new XueshengKecheng();
             
-            xueshengbanji.setXueshengid(xueshengid);
-            xueshengbanji.setBanjiid(cachekecheng.getBanjiid());
-            xueshengbanji.setBj_mingzi(cachekecheng.getBj_mingzi());
-            xueshengbanji.setShoukuanren(shoukuanren);
+            xueshengkecheng.setXueshengid(xueshengid);
+            xueshengkecheng.setBanjiid(cachekecheng.getKechengid());
+            xueshengkecheng.setBj_mingzi(cachekecheng.getBj_mingzi());
+            xueshengkecheng.setShoukuanren(shoukuanren);
             
-            reXueshengBanji.add(xueshengbanji);
+            reXueshengKecheng.add(xueshengkecheng);
         }
-		return reXueshengBanji;
+		return reXueshengKecheng;
 	}
 
 }

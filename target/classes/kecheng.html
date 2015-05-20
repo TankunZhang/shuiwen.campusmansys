@@ -73,10 +73,6 @@
           </div>
         </div>
       </div>
-  
-  
-          
-            
   </div>
   </div>
   
@@ -210,19 +206,37 @@
      <div class="modal-body">
        <!-- table -->
        <div>
-           <div class="form-horizontal" >
+           <form action="#" method="post" class="form-horizontal" id="formaddkemu">
             <div class="control-group">
               <label class="control-label">科目名:</label>
               <div class="controls">
                 <input id="km_mingzi" name="km_mingzi" type="text" class="span3" />
               </div>
             </div>
-          </div>
+            <div class="control-group">
+              <label class="control-label">学期制:</label>
+              <div class="controls">
+                <input id="xueqizhi" name="xueqizhi" type="text" class="span3" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">单学期默认课时:</label>
+              <div class="controls">
+                <input id="morenkeshi" name="morenkeshi" type="text" class="span3" />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">默认单价:</label>
+              <div class="controls">
+                <input id="danjia" name="danjia" type="text" class="span3" />
+              </div>
+            </div>
+          </form>
 		</div>
         <!-- table -->
         </div>
         <div class="modal-footer">
-			<a href="#" id="addkemuCance" class="btn" data-dismiss="modal">取消</a> 
+			<button id="addkemuCance" class="btn" data-dismiss="modal">取消</button> 
         	<button id="addkemuSubmit" class="btn btn-primary">增加</button> 
         </div>
       </div>
@@ -230,5 +244,6 @@
 
 <!--end-Footer-part--> 
 <script src="homejs/kecheng.js"></script> 
-
+<script src="homejs/jqueryvalidate.js"></script> 
+<script src="homejs/formvalidation.js"></script>
 

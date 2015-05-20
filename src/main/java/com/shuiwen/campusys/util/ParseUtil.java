@@ -82,7 +82,7 @@ public class ParseUtil {
 		return realJson;
 	}
 	
-	public static String BanjiformToJson(byte[] byteArray){
+	public static String KechengformToJson(byte[] byteArray){
 		String formStr = ParseString(byteArray);
 		JSONArray formArray = JSON.parseArray(formStr);
 		String realJson = "{";
@@ -137,7 +137,7 @@ public class ParseUtil {
 		return data;
 	}
 //	public static void main(String args[]){
-//		String data = "[{\"name\":\"xingming\",\"value\":\"敦耀\"},{\"name\":\"xingbie\",\"value\":\"男\"},{\"name\":\"cs_riqi\",\"value\":\"1832年23\"},{\"name\":\"xiaoqu\",\"value\":\"\"},{\"name\":\"banji\",\"value\":\"\"},{\"name\":\"sk_jiaoshi\",\"value\":\"\"},{\"name\":\"dizhi\",\"value\":\"\"},{\"name\":\"gd_dianhua\",\"value\":\"\"},{\"name\":\"mq_shouji\",\"value\":\"\"},{\"name\":\"fq_shouji\",\"value\":\"\"},{\"name\":\"youeryuan\",\"value\":\"\"},{\"name\":\"zc_shijian\",\"value\":\"\"},{\"name\":\"keci\",\"value\":\"\"},{\"name\":\"dycsk_shijian\",\"value\":\"\"},{\"name\":\"beizhu\",\"value\":\"\"},{\"name\":\"zhaopian\",\"value\":\"\"},{\"name\":\"jingli\",\"value\":\"\"}]";//		
+//		String data = "[{\"name\":\"xingming\",\"value\":\"敦耀\"},{\"name\":\"xingbie\",\"value\":\"男\"},{\"name\":\"cs_riqi\",\"value\":\"1832年23\"},{\"name\":\"xiaoqu\",\"value\":\"\"},{\"name\":\"kecheng\",\"value\":\"\"},{\"name\":\"sk_jiaoshi\",\"value\":\"\"},{\"name\":\"dizhi\",\"value\":\"\"},{\"name\":\"gd_dianhua\",\"value\":\"\"},{\"name\":\"mq_shouji\",\"value\":\"\"},{\"name\":\"fq_shouji\",\"value\":\"\"},{\"name\":\"youeryuan\",\"value\":\"\"},{\"name\":\"zc_shijian\",\"value\":\"\"},{\"name\":\"keci\",\"value\":\"\"},{\"name\":\"dycsk_shijian\",\"value\":\"\"},{\"name\":\"beizhu\",\"value\":\"\"},{\"name\":\"zhaopian\",\"value\":\"\"},{\"name\":\"jingli\",\"value\":\"\"}]";//		
 //				data = ParseUtil.XueShengformToJson(data);
 //		System.out.println(data);
 //		Gson gson = new Gson();

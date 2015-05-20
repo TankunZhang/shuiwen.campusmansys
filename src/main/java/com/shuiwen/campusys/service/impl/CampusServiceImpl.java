@@ -10,20 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
-import com.shuiwen.campusys.bean.Banji;
-import com.shuiwen.campusys.bean.Guanliyuan;
 import com.shuiwen.campusys.bean.Kecheng;
+import com.shuiwen.campusys.bean.Guanliyuan;
 import com.shuiwen.campusys.bean.Kemu;
 import com.shuiwen.campusys.bean.Xiaoqu;
 import com.shuiwen.campusys.bean.XueSheng;
-import com.shuiwen.campusys.bean.XueshengBanji;
-import com.shuiwen.campusys.dao.BanjiDAO;
-import com.shuiwen.campusys.dao.GuanliyuanDAO;
+import com.shuiwen.campusys.bean.XueshengKecheng;
 import com.shuiwen.campusys.dao.KechengDAO;
+import com.shuiwen.campusys.dao.GuanliyuanDAO;
 import com.shuiwen.campusys.dao.KemuDAO;
 import com.shuiwen.campusys.dao.XiaoquDAO;
 import com.shuiwen.campusys.dao.XueShengDAO;
-import com.shuiwen.campusys.dao.XueshengBanjiDAO;
+import com.shuiwen.campusys.dao.XueshengKechengDAO;
 import com.shuiwen.campusys.service.CampusService;
 
 @Service
@@ -36,15 +34,13 @@ public class CampusServiceImpl implements CampusService {
     @Autowired
     private GuanliyuanDAO guanliyuanDAO;
     @Autowired
-    private KechengDAO kechengDAO;
-    @Autowired
     private XiaoquDAO xiaoquDAO;
     @Autowired
-    private BanjiDAO banjiDAO;
+    private KechengDAO kechengDAO;
     @Autowired
     private KemuDAO kemuDAO;
     @Autowired
-    private XueshengBanjiDAO xueshengbanjiDAO;
+    private XueshengKechengDAO xueshengkechengDAO;
     
     private static Gson gson = new Gson();
     
@@ -178,44 +174,44 @@ public class CampusServiceImpl implements CampusService {
 	}
 	
 	@Override
-	public List<Banji> findAllBanjis(HashMap xiaoqumap) {
+	public List<Kecheng> findAllKechengs(HashMap xiaoqumap) {
 		// TODO Auto-generated method stub
-		List<Banji> allBanjis = banjiDAO.findAllBanjis(xiaoqumap);
-        return allBanjis;
+		List<Kecheng> allKechengs = kechengDAO.findAllKechengs(xiaoqumap);
+        return allKechengs;
 	}
 	@Override
-	public Banji findBanjiByID(HashMap banjiid) {
+	public Kecheng findKechengByID(HashMap kechengid) {
 		// TODO Auto-generated method stub
-		return banjiDAO.findBanjiByID(banjiid);
-	}
-	
-	@Override
-	public List<Banji> findBanjiByKemu(HashMap kemumap) {
-		// TODO Auto-generated method stub
-		return banjiDAO.findBanjiByKemu(kemumap);
+		return kechengDAO.findKechengByID(kechengid);
 	}
 	
 	@Override
-	public int updateBanji(Banji banji) {
+	public List<Kecheng> findKechengByKemu(HashMap kemumap) {
 		// TODO Auto-generated method stub
-		return banjiDAO.updateBanji(banji);
+		return kechengDAO.findKechengByKemu(kemumap);
 	}
 	
 	@Override
-	public int insertBanji(Banji banji) {
+	public int updateKecheng(Kecheng kecheng) {
 		// TODO Auto-generated method stub
-		return banjiDAO.insertBanji(banji);
+		return kechengDAO.updateKecheng(kecheng);
 	}
 	
 	@Override
-	public int deleteBanji(HashMap banjiid) {
+	public int insertKecheng(Kecheng kecheng) {
 		// TODO Auto-generated method stub
-		return banjiDAO.deleteBanji(banjiid);
+		return kechengDAO.insertKecheng(kecheng);
+	}
+	
+	@Override
+	public int deleteKecheng(HashMap kechengid) {
+		// TODO Auto-generated method stub
+		return kechengDAO.deleteKecheng(kechengid);
 	}
 	@Override
-	public int deleteBanjiNow(HashMap banjiid) {
+	public int deleteKechengNow(HashMap kechengid) {
 		// TODO Auto-generated method stub
-		return banjiDAO.deleteBanjiNow(banjiid);
+		return kechengDAO.deleteKechengNow(kechengid);
 	}
 
 	@Override
@@ -231,15 +227,15 @@ public class CampusServiceImpl implements CampusService {
 	}
 	
 	@Override
-	public int insertXueshengBanji(List<XueshengBanji> xueshengbanji) {
+	public int insertXueshengKecheng(List<XueshengKecheng> xueshengkecheng) {
 		// TODO Auto-generated method stub
-		return xueshengbanjiDAO.insertXueshengBanji(xueshengbanji);
+		return xueshengkechengDAO.insertXueshengKecheng(xueshengkecheng);
 	}
 	@Override
-	public List<XueshengBanji> findAllXueshengBanjis(HashMap xiaoqumap) {
+	public List<XueshengKecheng> findAllXueshengKechengs(HashMap xiaoqumap) {
 		// TODO Auto-generated method stub
-		List<XueshengBanji> allXueshengBanjis = xueshengbanjiDAO.findAllXueshengBanjis(xiaoqumap);
-        return allXueshengBanjis;
+		List<XueshengKecheng> allXueshengKechengs = xueshengkechengDAO.findAllXueshengKechengs(xiaoqumap);
+        return allXueshengKechengs;
 	}
 	
 }

@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.shuiwen.campusys.bean.Banji;
+import com.shuiwen.campusys.bean.Kecheng;
 import com.shuiwen.campusys.bean.CacheKecheng;
 import com.shuiwen.campusys.bean.Guanliyuan;
 import com.shuiwen.campusys.bean.Kemu;
 import com.shuiwen.campusys.bean.Xiaoqu;
 import com.shuiwen.campusys.bean.XueSheng;
-import com.shuiwen.campusys.bean.XueshengBanji;
+import com.shuiwen.campusys.bean.XueshengKecheng;
 import com.shuiwen.campusys.service.CampusService;
 import com.shuiwen.campusys.util.AssistFunUtil;
 import com.shuiwen.campusys.util.ParseUtil;
@@ -300,15 +300,15 @@ public class MainController {
     @RequestMapping(value="/findallclasses")
     @ResponseBody
     public String findAllClasses(HttpServletRequest request, HttpServletResponse response, @RequestParam("xiaoquid") int xiaoquid) throws IOException {
-    	List<Banji> allBanjis = null;
+    	List<Kecheng> allKechengs = null;
     	
     	try {
 	        	HashMap<String, Integer> xiaoqumap = new HashMap<String, Integer>();
 	        	xiaoqumap.put("xiaoquid", xiaoquid);
 	        	System.out.println(xiaoquid);
-	        	allBanjis = campusService.findAllBanjis(xiaoqumap);
-	        	if(allBanjis!=null){
-	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",allBanjis);
+	        	allKechengs = campusService.findAllKechengs(xiaoqumap);
+	        	if(allKechengs!=null){
+	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",allKechengs);
 	        	}else{
 	        		responseData = ResponseUtil.buildErrorResponse(0, "查询失败", null);
 	        	}
@@ -323,15 +323,15 @@ public class MainController {
     
     @RequestMapping(value="/findclassbyid")
     @ResponseBody
-    public String findBanjiByID(HttpServletRequest request,@RequestParam("id") int id) throws IOException {
-    	Banji banji = null;
+    public String findKechengByID(HttpServletRequest request,@RequestParam("id") int id) throws IOException {
+    	Kecheng kecheng = null;
     	
     	try {
-	        	HashMap<String, Integer> banjiid = new HashMap<String, Integer>();
-	        	banjiid.put("id", id);
-	        	banji = campusService.findBanjiByID(banjiid);
-	        	if(banji!=null){
-	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",banji);
+	        	HashMap<String, Integer> kechengid = new HashMap<String, Integer>();
+	        	kechengid.put("id", id);
+	        	kecheng = campusService.findKechengByID(kechengid);
+	        	if(kecheng!=null){
+	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",kecheng);
 	        	}else{
 	        		responseData = ResponseUtil.buildErrorResponse(0, "查询失败", null);
 	        	}
@@ -347,13 +347,13 @@ public class MainController {
     
     @RequestMapping(value="/findclassbysubject")
     @ResponseBody
-    public String findBanjiByKemu(HttpServletRequest request,@RequestParam("kemuid") int kemuid) throws IOException {
+    public String findKechengByKemu(HttpServletRequest request,@RequestParam("kemuid") int kemuid) throws IOException {
     	try {
 	        	HashMap<String, Integer> kemumap = new HashMap<String, Integer>();
 	        	kemumap.put("kemuid", kemuid);
-	        	List<Banji> banjis = campusService.findBanjiByKemu(kemumap);
-	        	if(banjis!=null){
-	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",banjis);
+	        	List<Kecheng> kechengs = campusService.findKechengByKemu(kemumap);
+	        	if(kechengs!=null){
+	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",kechengs);
 	        	}else{
 	        		responseData = ResponseUtil.buildErrorResponse(0, "查询失败", null);
 	        	}
@@ -369,15 +369,15 @@ public class MainController {
     
     @RequestMapping(value="/updateclass")
     @ResponseBody
-    public String updateBanji(HttpServletRequest request, HttpServletResponse response) {
+    public String updateKecheng(HttpServletRequest request, HttpServletResponse response) {
     	byte[] byteArray;
     	int instusuccess = -1;
 		try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
-	        String data = ParseUtil.BanjiformToJson(byteArray);
-			Banji banji = gson.fromJson(data, Banji.class);
-			System.out.println(gson.toJson(banji));
-			instusuccess = campusService.updateBanji(banji);
+	        String data = ParseUtil.KechengformToJson(byteArray);
+			Kecheng kecheng = gson.fromJson(data, Kecheng.class);
+			System.out.println(gson.toJson(kecheng));
+			instusuccess = campusService.updateKecheng(kecheng);
 			if(instusuccess>0){
 				responseData =  ResponseUtil.buildSuccessResponse("添加学生成功",instusuccess);
 			}else{
@@ -392,14 +392,14 @@ public class MainController {
     
     @RequestMapping(value="addclass")
     @ResponseBody
-    public String addBanji(HttpServletRequest request, HttpServletResponse response) {
+    public String addKecheng(HttpServletRequest request, HttpServletResponse response) {
     	byte[] byteArray;
     	int instusuccess = -1;
     	try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
-	        String data = ParseUtil.BanjiformToJson(byteArray);
-			Banji banji = gson.fromJson(data, Banji.class);
-			instusuccess = campusService.insertBanji(banji);
+	        String data = ParseUtil.KechengformToJson(byteArray);
+			Kecheng kecheng = gson.fromJson(data, Kecheng.class);
+			instusuccess = campusService.insertKecheng(kecheng);
 			if(instusuccess>0){
 				responseData =  ResponseUtil.buildSuccessResponse("添加用户成功",instusuccess);
 			}else{
@@ -416,11 +416,11 @@ public class MainController {
     
     @RequestMapping(value="/deleteclass")
     @ResponseBody
-    public String deleteBanji(HttpServletRequest request, @RequestParam("id") int id) {
+    public String deleteKecheng(HttpServletRequest request, @RequestParam("id") int id) {
     	int instusuccess = -1;
-    	HashMap<String, Integer> banjiid = new HashMap<String, Integer>();
-    	banjiid.put("id", id);
-    	instusuccess = campusService.deleteBanji(banjiid);
+    	HashMap<String, Integer> kechengid = new HashMap<String, Integer>();
+    	kechengid.put("id", id);
+    	instusuccess = campusService.deleteKecheng(kechengid);
     	if(instusuccess>0){
     		responseData =  ResponseUtil.buildSuccessResponse("删除学生成功",instusuccess);
     	}else{
@@ -432,11 +432,11 @@ public class MainController {
     
     @RequestMapping(value="/deleteclassnow")
     @ResponseBody
-    public String deleteBanjiNow(HttpServletRequest request, @RequestParam("id") int id) {
+    public String deleteKechengNow(HttpServletRequest request, @RequestParam("id") int id) {
     	int instusuccess = -1;
-    	HashMap<String, Integer> banjiid = new HashMap<String, Integer>();
-    	banjiid.put("id", id);
-    	instusuccess = campusService.deleteBanjiNow(banjiid);
+    	HashMap<String, Integer> kechengid = new HashMap<String, Integer>();
+    	kechengid.put("id", id);
+    	instusuccess = campusService.deleteKechengNow(kechengid);
     	if(instusuccess>0){
     		responseData =  ResponseUtil.buildSuccessResponse("预先删除学生成功",instusuccess);
     	}else{
@@ -493,12 +493,12 @@ public class MainController {
     @SuppressWarnings("unchecked")
 	@RequestMapping(value="addstuclass")
     @ResponseBody
-    public String addXueBanji(HttpServletRequest request, @RequestParam("xueshengid") int xueshengid,@RequestParam("shoukuanren") String shoukuanren) {
+    public String addXueKecheng(HttpServletRequest request, @RequestParam("xueshengid") int xueshengid,@RequestParam("shoukuanren") String shoukuanren) {
 		int instusuccess = -1;
 		if(xuexuankemap.containsKey(xueshengid)){
 			HashMap<Integer, CacheKecheng> xuankes = (HashMap<Integer, CacheKecheng>)xuexuankemap.get(xueshengid);
-	        List<XueshengBanji> XueshengBanji = AssistFunUtil.XueBanjiToList(xuankes,shoukuanren,xueshengid);
-	        instusuccess = campusService.insertXueshengBanji(XueshengBanji);
+	        List<XueshengKecheng> XueshengKecheng = AssistFunUtil.XueKechengToList(xuankes,shoukuanren,xueshengid);
+	        instusuccess = campusService.insertXueshengKecheng(XueshengKecheng);
 		}
 		if(instusuccess>0){
 			responseData =  ResponseUtil.buildSuccessResponse("添加课程成功",instusuccess);
@@ -511,14 +511,14 @@ public class MainController {
     
     @RequestMapping(value="/findallstuclasses")
     @ResponseBody
-    public String findAllXueshengBanjis(HttpServletRequest request, @RequestParam("xiaoquid") int xiaoquid) {
+    public String findAllXueshengKechengs(HttpServletRequest request, @RequestParam("xiaoquid") int xiaoquid) {
     	
     	try {
     		HashMap<String, Integer> xiaoqumap = new HashMap<String, Integer>();
         	xiaoqumap.put("xiaoquid", xiaoquid);
-        	List<XueshengBanji> allXueshengBanjis = campusService.findAllXueshengBanjis(xiaoqumap);
-        	if(allXueshengBanjis!=null){
-        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",allXueshengBanjis);
+        	List<XueshengKecheng> allXueshengKechengs = campusService.findAllXueshengKechengs(xiaoqumap);
+        	if(allXueshengKechengs!=null){
+        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",allXueshengKechengs);
         	}else{
         		responseData = ResponseUtil.buildErrorResponse(0, "查询失败", null);
         	}
@@ -541,14 +541,14 @@ public class MainController {
         CacheKecheng cachekecheng = gson.fromJson(data, CacheKecheng.class);
     	if(xuexuankemap.containsKey(xueshengid)){
     		xuankes = (HashMap<Integer, CacheKecheng>)xuexuankemap.get(xueshengid);
-    		if(xuankes.containsKey(cachekecheng.getBanjiid())){
-    			xuankes.remove(cachekecheng.getBanjiid());
+    		if(xuankes.containsKey(cachekecheng.getKechengid())){
+    			xuankes.remove(cachekecheng.getKechengid());
     		}
-    		xuankes.put(cachekecheng.getBanjiid(), cachekecheng);
+    		xuankes.put(cachekecheng.getKechengid(), cachekecheng);
     		xuexuankemap.remove(xueshengid);
     	}else{
     		xuankes = new HashMap<Integer, CacheKecheng>();
-    		xuankes.put(cachekecheng.getBanjiid(), cachekecheng);
+    		xuankes.put(cachekecheng.getKechengid(), cachekecheng);
     	}
     	xuexuankemap.put(xueshengid, xuankes);
     	
@@ -571,11 +571,11 @@ public class MainController {
     @SuppressWarnings("unchecked")
 	@RequestMapping(value="/delcacheapplyclass")
     @ResponseBody
-    public String DelCacheXueXuanke(HttpServletRequest request,@RequestParam("banjiid") int banjiid, @RequestParam("xueshengid") int xueshengid) throws IOException {
+    public String DelCacheXueXuanke(HttpServletRequest request,@RequestParam("kechengid") int kechengid, @RequestParam("xueshengid") int xueshengid) throws IOException {
     	HashMap<Integer, CacheKecheng> xuankes = (HashMap<Integer, CacheKecheng>)xuexuankemap.get(xueshengid);
     	List<CacheKecheng> rexuankelist = null;
-    	if(xuankes.containsKey(banjiid)){
-			xuankes.remove(banjiid);
+    	if(xuankes.containsKey(kechengid)){
+			xuankes.remove(kechengid);
 			xuexuankemap.remove(xueshengid);
 	    	xuexuankemap.put(xueshengid, xuankes);
 	    	rexuankelist = new ArrayList<CacheKecheng>();
