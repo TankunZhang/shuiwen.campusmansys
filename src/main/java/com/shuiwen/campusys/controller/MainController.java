@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
 import com.google.gson.Gson;
 import com.shuiwen.campusys.bean.Kecheng;
 import com.shuiwen.campusys.bean.CacheKecheng;
@@ -27,6 +28,7 @@ import com.shuiwen.campusys.bean.XueSheng;
 import com.shuiwen.campusys.bean.XueshengKecheng;
 import com.shuiwen.campusys.service.CampusService;
 import com.shuiwen.campusys.util.AssistFunUtil;
+import com.shuiwen.campusys.util.LogUtil;
 import com.shuiwen.campusys.util.ParseUtil;
 import com.shuiwen.campusys.util.ResponseUtil;
 
@@ -473,12 +475,18 @@ public class MainController {
     
     @RequestMapping(value="/addsubject")
     @ResponseBody
-    public String addKemu(HttpServletRequest request, @RequestParam("km_mingzi") String km_mingzi,@RequestParam("xiaoquid") int xiaoquid) {
-    	Kemu kemu = new Kemu(km_mingzi,xiaoquid);
+    public String addKemu(HttpServletRequest request, HttpServletResponse response) {
+    	byte[] byteArray;
+    	int instusuccess = -1;
     	try {
-        	Kemu rekemu = campusService.insertKemu(kemu);
-			if(rekemu!=null){
-				responseData =  ResponseUtil.buildSuccessResponse("添加科目成功",rekemu);
+			byteArray = IOUtils.toByteArray(request.getInputStream());
+			String kemuyouhuijson = ParseUtil.ParseString(byteArray);
+			LogUtil.AuthTitlLog("addsubject","Request", kemuyouhuijson);
+	        List data = AssistFunUtil.KemuyouhuiToList(kemuyouhuijson);
+        	Kemu rekemu = campusService.insertKemu((Kemu)data.get(0));
+        	instusuccess = campusService.insertDankeyouhui(rekemu,(JSONArray)data.get(1));
+			if(instusuccess>0){
+				responseData =  ResponseUtil.buildSuccessResponse("添加成功",1);
 			}else{
 				responseData = ResponseUtil.buildErrorResponse(0, "请求失败", null);
 			}

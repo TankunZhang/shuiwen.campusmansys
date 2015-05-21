@@ -1,19 +1,19 @@
 $("document").ready(function() {
-	$('.zhekou').mask('99%');
 	$('.keshi').mask('99');
 	var huancun = $('#huancun').val();
+	var setdankeyouhui = "";
 	huancun=eval('('+huancun+')');
 	$("#editkemutitle").html(huancun.km_mingzi+",单科优惠设置");
 	
+	var zongjia = 0;
+	var zhekouzongjia = 0;
 	var stuttr = $("#editkemutr");
 	for(var i=1;i<huancun.xueqizhi+1;i++){
 		//克隆tr，每次遍历都可以产生新的tr                              
         var clonedTr = stuttr.clone();
         clonedTr.attr('id',i);
-       
         //循环遍历cloneTr的每一个td元素，并赋值  
         clonedTr.children("td").each(function(inner_index){  
-           
                //根据索引为每一个td赋值  
                      switch(inner_index){  
                            case(0):   
@@ -23,27 +23,35 @@ $("document").ready(function() {
                               $(this).html(huancun.morenkeshi);
                               break;  
                           case(2):  
-                              $(this).html("<input type=\"text\" style=\"width: 40px;\" value=\""+huancun.danjia+"\" >");  
+                              $(this).html("<input type=\"text\" id=\"danjia"+i+"\" style=\"width: 40px;\" value=\""+huancun.danjia+"\" >");  
                               break;  
                           case(3):  
+                        	  zongjia = zongjia+huancun.morenkeshi*huancun.danjia;
                               $(this).html(huancun.morenkeshi*huancun.danjia);  
                               break; 
                           case(4):  
                               $(this).html(huancun.morenkeshi*i);  
                               break; 
-                          case(7):  
-                              $(this).className="zhekou";
-                          alert($(this).className);
+                          case(5):  
+                          	  $(this).html(zongjia);  
                               break; 
+                          case(6):  
+                          	  $(this).attr('id',"zhekoujia"+i);
+                              break; 
+                          case(7):  
+                        	  $(this).html("<input type=\"text\" id=\"zhekou"+i+"\" class=\"zhekou\" style=\"width: 40px;\" value=\"090%\" >");  
+                          break;
                           
                     }//end switch                          
 	     });//end children.each  
 	   
 	    //把克隆好的tr追加原来的tr后面  
 //	    clonedTr.append($("#editkemutbody"));  
+        
 	    $("#editkemutbody").append(clonedTr);
 	 }//end $each  
-//	$("#editkemutr").hide();
+	$('.zhekou').mask('999%');
+	$("#editkemutr").hide();
 	$("#editkemutable").show();
 	$("#editkemutable").dataTable({
 		"bDestroy": true,
@@ -55,5 +63,86 @@ $("document").ready(function() {
 		"bAutoWidth": true,//自动宽度
 		"bJQueryUI": false,
 	});
+	
+	$('#rejisuan').click(function(){
+		setdankeyouhui = "{\"km_mingzi\":\""+huancun.km_mingzi+"\",\"xiaoquid\":"+$('#indexxiaoqu').val()+",\"xueqizhi\":"+huancun.xueqizhi+",\"dankeyouhui\":[";
+		zongjia = 0;
+		var zhekouzongjia = 0;
+		for(var i=1;i<huancun.xueqizhi+1;i++){
+			if(i!=1){
+				setdankeyouhui = setdankeyouhui+","
+			}
+			//克隆tr，每次遍历都可以产生新的tr                              
+	        var clonedTr = $("#"+i);
+	        //循环遍历cloneTr的每一个td元素，并赋值  
+	        clonedTr.children("td").each(function(inner_index){  
+	               //根据索引为每一个td赋值  
+	        	var zhekoushu = $("#zhekou"+i).val().split("%")[0];
+                     switch(inner_index){  
+                     case(0):  
+                	   		setdankeyouhui =setdankeyouhui + "{\"xueqishu\":"+$(this).html()+","; 
+                   		break; 
+                     case(1):  
+                 	    setdankeyouhui = setdankeyouhui + "\"keshi\":"+$(this).html()+","; 
+             			break;
+                     case(2):  
+                 	    setdankeyouhui = setdankeyouhui +  "\"danjia\":"+$("#danjia"+i).val()+","; 
+           				break;
+	                  case(3):  
+	                	  zongjia = zongjia+huancun.morenkeshi*$("#danjia"+i).val();
+	                      $(this).html(huancun.morenkeshi*$("#danjia"+i).val());  
+	                      break; 
+	                  case(4):  
+	                      $(this).html(huancun.morenkeshi*i);  
+	                      break; 
+	                  case(5):  
+	                	  setdankeyouhui = setdankeyouhui + "\"zongjia\":"+zongjia+","; 
+	                  	  $(this).html(zongjia);  
+	                      break; 
+	                  case(6):  
+	                  	  $(this).html(zongjia*zhekoushu/100);  
+	                      break; 
+	                  case(7):  
+                    	  setdankeyouhui = setdankeyouhui + "\"zhekou\":"+zhekoushu+"}"; 
+                          break;
+                    }//end switch                          
+		     });//end children.each  
+		 }//end $each  
+		setdankeyouhui = setdankeyouhui + "]}";
+	});
+	
+	$('#setdankeyouhui').click(function(){
+		alert(setdankeyouhui);
+		if($('#zhekoujia1').html().length>0){
+			$.ajax({
+				type : "POST" ,
+				contentType : "application/json" ,      				
+				url : "addsubject",
+				data: setdankeyouhui,
+				dataType : "json" ,       					
+				success : function(resultdata){
+					var data = validJson(resultdata);
+					if(data!=-1){
+						alert("科目添加成功成功");
+						$("#content").load("kecheng.html");
+					}
+					
+				}     			
+			});
+		}else{
+			alert('请清算！');
+		}
+	});
+	
+	
+	
+	function validJson(resultdata){
+		if(resultdata.status==1){
+			return resultdata.data;
+		}else{
+			alert("系统等待："+resultdata.info);
+			return -1;
+		}
+	}
 	
 });

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50041
 File Encoding         : 65001
 
-Date: 2015-05-20 21:19:48
+Date: 2015-05-21 20:54:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,14 +49,36 @@ INSERT INTO `admin` VALUES ('11', 'rrrr', '1111', '1', null, null);
 -- ----------------------------
 DROP TABLE IF EXISTS `dankeyouhui`;
 CREATE TABLE `dankeyouhui` (
+  `id` int(11) NOT NULL auto_increment,
   `kemuid` int(11) NOT NULL,
   `xueqishu` int(11) NOT NULL,
-  `zhekou` float NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `zhekou` float NOT NULL default '0',
+  `keshi` int(11) default '0',
+  `zongjia` float default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dankeyouhui
 -- ----------------------------
+INSERT INTO `dankeyouhui` VALUES ('4', '20', '1', '100', '16', '2880');
+INSERT INTO `dankeyouhui` VALUES ('5', '20', '2', '100', '16', '5760');
+INSERT INTO `dankeyouhui` VALUES ('6', '20', '3', '98', '16', '8800');
+INSERT INTO `dankeyouhui` VALUES ('7', '20', '4', '90', '16', '12000');
+INSERT INTO `dankeyouhui` VALUES ('8', '21', '1', '100', '16', '2880');
+INSERT INTO `dankeyouhui` VALUES ('9', '21', '2', '100', '16', '5760');
+INSERT INTO `dankeyouhui` VALUES ('10', '21', '3', '100', '16', '8640');
+INSERT INTO `dankeyouhui` VALUES ('11', '21', '4', '98', '16', '11520');
+INSERT INTO `dankeyouhui` VALUES ('12', '21', '5', '90', '16', '14720');
+INSERT INTO `dankeyouhui` VALUES ('13', '22', '1', '100', '18', '1800');
+INSERT INTO `dankeyouhui` VALUES ('14', '22', '2', '100', '18', '3600');
+INSERT INTO `dankeyouhui` VALUES ('15', '22', '3', '100', '18', '5400');
+INSERT INTO `dankeyouhui` VALUES ('16', '22', '4', '100', '18', '7200');
+INSERT INTO `dankeyouhui` VALUES ('17', '22', '5', '100', '18', '9000');
+INSERT INTO `dankeyouhui` VALUES ('18', '22', '6', '100', '18', '10800');
+INSERT INTO `dankeyouhui` VALUES ('19', '22', '7', '98', '18', '12600');
+INSERT INTO `dankeyouhui` VALUES ('20', '22', '8', '95', '18', '14400');
+INSERT INTO `dankeyouhui` VALUES ('21', '22', '9', '90', '18', '16200');
 
 -- ----------------------------
 -- Table structure for `guanliyuan`
@@ -113,20 +135,12 @@ CREATE TABLE `kecheng` (
   `zd_renshu` int(11) default '0',
   `dq_renshu` int(11) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kecheng
 -- ----------------------------
-INSERT INTO `kecheng` VALUES ('1', '1', '14B', '歌舞14B1', '李某某，王某某', '星期六', '16', '2014-08-02  13:30:00', '已删除', '25', '16');
-INSERT INTO `kecheng` VALUES ('2', '1', '14B', '歌舞14B2', '张某某，何某某', '星期天', '16', '2014-08-03  09:30:00', '已开班', '25', '19');
-INSERT INTO `kecheng` VALUES ('4', '6', '15B', '舞蹈15B1', '王某，陈某', '星期六', '17', '2015-10-10  13:30:00', '未开班', '25', '4');
-INSERT INTO `kecheng` VALUES ('5', '10', '15B', '足球15B1', '陈欧，陈军', '星期四', '16', '2015-05-06  08:30:00', '已开班', '25', '2');
-INSERT INTO `kecheng` VALUES ('6', '9', '15B', '围棋15B1', '张某', '星期一', '11', '2017-12-09  13:30:00', '未开班', '25', '4');
-INSERT INTO `kecheng` VALUES ('7', '7', '15B', '合唱15B3', '张某', '星期四', '16', '2015-09-09  09:30:00', '未开班', '25', '3');
-INSERT INTO `kecheng` VALUES ('8', '8', '15B', '象棋15B1', '何某', '星期三', '15', '2015-09-21  13:30:00', '未开班', '30', '0');
-INSERT INTO `kecheng` VALUES ('9', '11', '15B', '钢琴15B2', '杨过', '星期六', '16', '2005-09-05  13:30:33', '未开班', '25', '1');
-INSERT INTO `kecheng` VALUES ('10', '13', '16B', '软件工程16B1', '曾谋', '星期二', '16', '1991-09-04  09:30:00', '已删除', '16', '0');
+INSERT INTO `kecheng` VALUES ('11', '20', '15B', '舞蹈15B1', '陈某，李某', '星期天', '18', '2015-09-20  13:00:00', '未开班', '25', '0');
 
 -- ----------------------------
 -- Table structure for `kemu`
@@ -140,23 +154,14 @@ CREATE TABLE `kemu` (
   `keshi` int(11) default '0',
   `danjia` float default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kemu
 -- ----------------------------
-INSERT INTO `kemu` VALUES ('1', '1', '歌舞', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('2', '1', '钢琴', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('3', '1', '朗诵', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('4', '1', '民族舞', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('5', '1', '合唱', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('6', '2', '舞蹈', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('7', '2', '合唱', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('8', '2', '象棋', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('9', '3', '围棋', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('10', '3', '足球', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('11', '3', '钢琴', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('13', '15', '软件工程', '0', '0', '0');
+INSERT INTO `kemu` VALUES ('20', '15', '舞蹈', '0', '0', '0');
+INSERT INTO `kemu` VALUES ('21', '15', '国画', '0', '0', '0');
+INSERT INTO `kemu` VALUES ('22', '15', '足球', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `xiaoqu`
@@ -230,16 +235,3 @@ CREATE TABLE `xuesheng_kecheng` (
 -- ----------------------------
 -- Records of xuesheng_kecheng
 -- ----------------------------
-INSERT INTO `xuesheng_kecheng` VALUES ('10', '3', '6', '0', '霍某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('11', '3', '5', '0', '霍某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('12', '17', '7', '0', '张某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('13', '17', '4', '0', '张某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('14', '17', '7', '0', '张某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('15', '4', '7', '0', '张某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('16', '4', '4', '0', '张某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('17', '3', '5', '0', '张某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('18', '3', '6', '0', '张某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('19', '18', '6', '0', '张其坤', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('20', '18', '9', '0', '王某', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('21', '4', '4', '0', '', '0', null, null, '0');
-INSERT INTO `xuesheng_kecheng` VALUES ('22', '13', '4', '0', '何某', '0', null, null, '0');

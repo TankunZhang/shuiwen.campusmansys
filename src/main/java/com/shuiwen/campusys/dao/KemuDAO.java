@@ -3,6 +3,7 @@ package com.shuiwen.campusys.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONArray;
 import com.shuiwen.campusys.bean.Kemu;
 
 public interface KemuDAO {
@@ -11,6 +12,7 @@ public interface KemuDAO {
 	
     public Kemu insertKemu(Kemu kemu);
   
+    public int insertDankeyouhui(Kemu kemu, JSONArray dankeyouhuiarray);
     
     public List<Kemu> findAllKemus(HashMap xiaoqumap);
     

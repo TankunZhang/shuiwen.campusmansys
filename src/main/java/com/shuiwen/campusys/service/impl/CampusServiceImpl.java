@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.shuiwen.campusys.bean.Kecheng;
 import com.shuiwen.campusys.bean.Guanliyuan;
@@ -224,6 +226,11 @@ public class CampusServiceImpl implements CampusService {
 	public Kemu insertKemu(Kemu kemu) {
 		// TODO Auto-generated method stub
 		return kemuDAO.insertKemu(kemu);
+	}
+	@Override
+	public int insertDankeyouhui(Kemu kemu, JSONArray dankeyouhuiarray) {
+		// TODO Auto-generated method stub
+		return kemuDAO.insertDankeyouhui(kemu, dankeyouhuiarray);
 	}
 	
 	@Override

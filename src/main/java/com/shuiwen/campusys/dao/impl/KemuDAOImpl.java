@@ -1,10 +1,14 @@
 package com.shuiwen.campusys.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.shuiwen.campusys.bean.Dankeyouhui;
 import com.shuiwen.campusys.bean.Kemu;
 import com.shuiwen.campusys.dao.KemuDAO;
 
@@ -25,6 +29,32 @@ public class KemuDAOImpl extends SqlSessionDaoSupport implements KemuDAO {
 			return kemu;
 		}else{
 			return null;
+		}
+	}
+	@Override
+	public int insertDankeyouhui(Kemu kemu, JSONArray dankeyouhuiarray) {
+		// TODO Auto-generated method stub
+		List<Dankeyouhui> dankeyouhuilist = new ArrayList<Dankeyouhui>();
+		for(int i=0;i<dankeyouhuiarray.size();i++){
+			Dankeyouhui dankeyouhui = new Dankeyouhui();
+			JSONObject dankeyouhuiobject = dankeyouhuiarray.getJSONObject(i);
+			dankeyouhui.setKemuid(kemu.getId());
+			dankeyouhui.setKeshi(dankeyouhuiobject.getIntValue("keshi"));
+			dankeyouhui.setXueqishu(dankeyouhuiobject.getIntValue("xueqishu"));
+			dankeyouhui.setZhekou(dankeyouhuiobject.getFloatValue("zhekou"));
+			dankeyouhui.setZongjia(dankeyouhuiobject.getFloatValue("zongjia"));
+			System.out.println(dankeyouhui.getKemuid()+";"+dankeyouhui.getKeshi()+";"+dankeyouhui.getXueqishu()+";"+dankeyouhui.getZhekou());
+			dankeyouhuilist.add(dankeyouhui);
+		}
+		try{
+			doStatus = super.getSqlSession().insert("KemuMapper.insertDankeyouhui", dankeyouhuilist);
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+		if(doStatus>0){
+			return 1;
+		}else{
+			return 0;
 		}
 	}
 	

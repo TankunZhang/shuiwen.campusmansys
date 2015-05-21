@@ -24,6 +24,14 @@
        insert into KEMU (xiaoquid,km_mingzi)
        VALUES (#{xiaoquid},#{km_mingzi})
     </insert>
+    
+    <insert id="insertDankeyouhui" parameterType="ArrayList">
+       insert into DANKEYOUHUI (kemuid,xueqishu,zhekou,keshi,zongjia)
+       values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.kemuid},#{item.xueqishu},#{item.zhekou},#{item.keshi},#{item.zongjia})
+        </foreach>
+    </insert>
     <select id="maxKemuID" resultType="int">
        select max(id) from KEMU
     </select>

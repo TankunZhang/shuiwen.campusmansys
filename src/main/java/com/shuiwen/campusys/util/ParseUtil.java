@@ -1,12 +1,15 @@
 package com.shuiwen.campusys.util;
 
+import java.awt.List;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import com.shuiwen.campusys.bean.CacheKecheng;
+import com.shuiwen.campusys.bean.Kemu;
 import com.shuiwen.campusys.bean.XueSheng;
 
 public class ParseUtil {
@@ -135,6 +138,10 @@ public class ParseUtil {
 		}
 		
 		return data;
+	}
+	public static String KemuyouhuiToList(byte[] byteArray){
+		String formStr = ParseString(byteArray);
+		return formStr;
 	}
 //	public static void main(String args[]){
 //		String data = "[{\"name\":\"xingming\",\"value\":\"敦耀\"},{\"name\":\"xingbie\",\"value\":\"男\"},{\"name\":\"cs_riqi\",\"value\":\"1832年23\"},{\"name\":\"xiaoqu\",\"value\":\"\"},{\"name\":\"kecheng\",\"value\":\"\"},{\"name\":\"sk_jiaoshi\",\"value\":\"\"},{\"name\":\"dizhi\",\"value\":\"\"},{\"name\":\"gd_dianhua\",\"value\":\"\"},{\"name\":\"mq_shouji\",\"value\":\"\"},{\"name\":\"fq_shouji\",\"value\":\"\"},{\"name\":\"youeryuan\",\"value\":\"\"},{\"name\":\"zc_shijian\",\"value\":\"\"},{\"name\":\"keci\",\"value\":\"\"},{\"name\":\"dycsk_shijian\",\"value\":\"\"},{\"name\":\"beizhu\",\"value\":\"\"},{\"name\":\"zhaopian\",\"value\":\"\"},{\"name\":\"jingli\",\"value\":\"\"}]";//		
