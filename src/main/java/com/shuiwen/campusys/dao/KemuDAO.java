@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
+import com.shuiwen.campusys.bean.Dankeyouhui;
 import com.shuiwen.campusys.bean.Kemu;
 
 public interface KemuDAO {
@@ -22,6 +23,8 @@ public interface KemuDAO {
     public int deleteKemu(HashMap hashMap);
     
     public int updateKemu(Kemu kemu);
+    
+    public List<Dankeyouhui> findDankeyouhuiByKemu(HashMap kemumap);
     
 
 }

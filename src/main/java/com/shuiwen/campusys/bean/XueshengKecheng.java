@@ -4,7 +4,7 @@ public class XueshengKecheng {
 	private int id;
 	private int xueshengid;
 	private String xingming;
-	private int banjiid;
+	private int kechengid;
 	private String bj_mingzi;
 	private float xuefei;
 	private String shoukuanren;
@@ -25,11 +25,11 @@ public class XueshengKecheng {
 	public void setXueshengid(int xueshengid) {
 		this.xueshengid = xueshengid;
 	}
-	public int getBanjiid() {
-		return banjiid;
+	public int getKechengid() {
+		return kechengid;
 	}
-	public void setBanjiid(int banjiid) {
-		this.banjiid = banjiid;
+	public void setKechengid(int kechengid) {
+		this.kechengid = kechengid;
 	}
 	public float getXuefei() {
 		return xuefei;

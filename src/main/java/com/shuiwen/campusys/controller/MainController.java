@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.google.gson.Gson;
+import com.shuiwen.campusys.bean.Dankeyouhui;
 import com.shuiwen.campusys.bean.Kecheng;
 import com.shuiwen.campusys.bean.CacheKecheng;
 import com.shuiwen.campusys.bean.Guanliyuan;
@@ -62,7 +63,7 @@ public class MainController {
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("findallstudents","Response", responseData);
         return responseData;
     }
     
@@ -75,14 +76,17 @@ public class MainController {
 	        	HashMap<String, Integer> xueshengid = new HashMap<String, Integer>();
 	        	xueshengid.put("id", id);
 	        	xuesheng = campusService.findXueShengByID(xueshengid);
-	        	responseData =  ResponseUtil.buildSuccessResponse("查询学生成功",xuesheng);
-            
+	        	if(xuesheng!=null){
+	        		responseData =  ResponseUtil.buildSuccessResponse("查询学生成功",xuesheng);
+	        	}else{
+	    			responseData = ResponseUtil.buildSuccessResponse("查询失败", -1);
+	    		}
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("findstudentbyid","Response", responseData);
         return responseData;
     }
 
@@ -100,6 +104,7 @@ public class MainController {
     	}else{
 			responseData = ResponseUtil.buildSuccessResponse("本校区没有此学生", -1);
 		}
+    	LogUtil.AuthTitlLog("validstudent","Response", responseData);
         return responseData;
 
     }
@@ -113,7 +118,9 @@ public class MainController {
 		try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
 			String data = ParseUtil.XueShengformToJson(byteArray);
-//			System.out.println("解析数据："+data);
+			
+			LogUtil.AuthTitlLog("addstudent","Request", data);
+			
 			XueSheng xuesheng = gson.fromJson(data, XueSheng.class);
 			instusuccess = campusService.insertXueSheng(xuesheng);
 			if(instusuccess>0){
@@ -125,6 +132,7 @@ public class MainController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		LogUtil.AuthTitlLog("addstudent","Response", responseData);
     	return responseData;
     }
     
@@ -136,6 +144,9 @@ public class MainController {
 		try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
 			String data = ParseUtil.XueShengformToJson(byteArray);
+			
+			LogUtil.AuthTitlLog("updatestudent","Request", data);
+			
 			XueSheng xuesheng = gson.fromJson(data, XueSheng.class);
 			System.out.println(gson.toJson(xuesheng));
 			instusuccess = campusService.updateXueSheng(xuesheng);
@@ -148,6 +159,7 @@ public class MainController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		LogUtil.AuthTitlLog("updatestudent","Response", responseData);
     	return responseData;
     }
     
@@ -163,6 +175,7 @@ public class MainController {
     	}else{
 			responseData = ResponseUtil.buildErrorResponse(0, "请求失败", null);
 		}
+    	LogUtil.AuthTitlLog("deletestudent","Response", responseData);
         return responseData;
 
     }
@@ -176,9 +189,6 @@ public class MainController {
     	int realguanliyuan = campusService.validGuanliyuan(guanliyuan);
     	HashMap<String, Integer> realguanliyuanjson = new HashMap<String, Integer>();
     	realguanliyuanjson.put("realguanliyuan", realguanliyuan);
-    	//        String date = request.getParameter("date");
-//    
-//        CategoryReport categoryReport = campusService.queryBusinessCategoryReport(category, date);
         return gson.toJson(realguanliyuanjson);
     }
     
@@ -212,7 +222,7 @@ public class MainController {
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("finduserbyid","Response", responseData);
         return responseData;
     }
     
@@ -224,6 +234,9 @@ public class MainController {
     	try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
 	        String data = ParseUtil.GuanliyuanformToJson(byteArray);
+	        
+	        LogUtil.AuthTitlLog("adduser","Request", data);
+	        
 			Guanliyuan guanliyuan = gson.fromJson(data, Guanliyuan.class);
 			instusuccess = campusService.insertGuanliyuan(guanliyuan);
 			if(instusuccess>0){
@@ -236,6 +249,7 @@ public class MainController {
 			e.printStackTrace();
 			responseData= ResponseUtil.buildSystemErrorResponse();
 		}
+    	LogUtil.AuthTitlLog("adduser","Response", responseData);
         return responseData;
     }
     
@@ -244,14 +258,15 @@ public class MainController {
     public String deleteGuanliyuan(HttpServletRequest request, @RequestParam("id") int id) {
     	int instusuccess = -1;
     	
-	        	HashMap<String, Integer> guanliyuanid = new HashMap<String, Integer>();
-	        	guanliyuanid.put("id", id);
-	        	instusuccess = campusService.deleteGuanliyuan(guanliyuanid);
-	        	if(instusuccess>0){
-	        		responseData =  ResponseUtil.buildSuccessResponse("删除用户成功",instusuccess);
-		    	}else{
-					responseData = ResponseUtil.buildErrorResponse(0, "请求失败", null);
-				}
+    	HashMap<String, Integer> guanliyuanid = new HashMap<String, Integer>();
+    	guanliyuanid.put("id", id);
+    	instusuccess = campusService.deleteGuanliyuan(guanliyuanid);
+    	if(instusuccess>0){
+    		responseData =  ResponseUtil.buildSuccessResponse("删除用户成功",instusuccess);
+    	}else{
+			responseData = ResponseUtil.buildErrorResponse(0, "请求失败", null);
+		}
+    	LogUtil.AuthTitlLog("deleteuser","Response", responseData);	
         return responseData;
 
     }
@@ -272,7 +287,7 @@ public class MainController {
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-    	System.out.println(responseData);
+    	LogUtil.AuthTitlLog("findallschools","Response", responseData);	
     	return responseData;
     }
     
@@ -296,6 +311,7 @@ public class MainController {
 			e.printStackTrace();
 			responseData = ResponseUtil.buildSystemErrorResponse();
 		}
+    	LogUtil.AuthTitlLog("addschool","Response", responseData);	
         return responseData;
     }
     
@@ -307,7 +323,6 @@ public class MainController {
     	try {
 	        	HashMap<String, Integer> xiaoqumap = new HashMap<String, Integer>();
 	        	xiaoqumap.put("xiaoquid", xiaoquid);
-	        	System.out.println(xiaoquid);
 	        	allKechengs = campusService.findAllKechengs(xiaoqumap);
 	        	if(allKechengs!=null){
 	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",allKechengs);
@@ -319,7 +334,7 @@ public class MainController {
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("findallclasses","Response", responseData);
         return responseData;
     }
     
@@ -337,13 +352,12 @@ public class MainController {
 	        	}else{
 	        		responseData = ResponseUtil.buildErrorResponse(0, "查询失败", null);
 	        	}
-            
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("findclassbyid","Response", responseData);
         return responseData;
     }
     
@@ -359,16 +373,35 @@ public class MainController {
 	        	}else{
 	        		responseData = ResponseUtil.buildErrorResponse(0, "查询失败", null);
 	        	}
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            responseData = ResponseUtil.buildSystemErrorResponse();
+        }
+    	LogUtil.AuthTitlLog("findclassbysubject","Response", responseData);
+        return responseData;
+    }
+    @RequestMapping(value="/finddankeyouhuibysubject")
+    @ResponseBody
+    public String findDankeyouhuiByKemu(HttpServletRequest request,@RequestParam("kemuid") int kemuid) throws IOException {
+    	try {
+	        	HashMap<String, Integer> kemumap = new HashMap<String, Integer>();
+	        	kemumap.put("kemuid", kemuid);
+	        	List<Dankeyouhui> dankeyouhuis = campusService.findDankeyouhuiByKemu(kemumap);
+	        	if(dankeyouhuis!=null){
+	        		responseData =  ResponseUtil.buildSuccessResponse("查询班级成功",dankeyouhuis);
+	        	}else{
+	        		responseData = ResponseUtil.buildErrorResponse(0, "查询失败", null);
+	        	}
             
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("finddankeyouhuibysubject","Response", responseData);
         return responseData;
     }
-    
     @RequestMapping(value="/updateclass")
     @ResponseBody
     public String updateKecheng(HttpServletRequest request, HttpServletResponse response) {
@@ -377,8 +410,11 @@ public class MainController {
 		try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
 	        String data = ParseUtil.KechengformToJson(byteArray);
+	        
+	        LogUtil.AuthTitlLog("updateclass","Request", data);
+	        
 			Kecheng kecheng = gson.fromJson(data, Kecheng.class);
-			System.out.println(gson.toJson(kecheng));
+//			System.out.println(gson.toJson(kecheng));
 			instusuccess = campusService.updateKecheng(kecheng);
 			if(instusuccess>0){
 				responseData =  ResponseUtil.buildSuccessResponse("添加学生成功",instusuccess);
@@ -389,6 +425,7 @@ public class MainController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		LogUtil.AuthTitlLog("updateclass","Response", responseData);
     	return responseData;
     }
     
@@ -400,6 +437,9 @@ public class MainController {
     	try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
 	        String data = ParseUtil.KechengformToJson(byteArray);
+	        
+	        LogUtil.AuthTitlLog("addclass","Request", data);
+	        
 			Kecheng kecheng = gson.fromJson(data, Kecheng.class);
 			instusuccess = campusService.insertKecheng(kecheng);
 			if(instusuccess>0){
@@ -413,6 +453,7 @@ public class MainController {
 			e.printStackTrace();
 			responseData = ResponseUtil.buildSystemErrorResponse();
 		}
+    	LogUtil.AuthTitlLog("addclass","Response", responseData);
         return responseData;
     }
     
@@ -428,6 +469,8 @@ public class MainController {
     	}else{
 			responseData = ResponseUtil.buildErrorResponse(0, "请求失败", null);
 		}
+    	
+    	LogUtil.AuthTitlLog("deleteclass","Response", responseData);
         return responseData;
 
     }
@@ -444,6 +487,7 @@ public class MainController {
     	}else{
 			responseData = ResponseUtil.buildErrorResponse(0, "请求失败", null);
 		}
+    	LogUtil.AuthTitlLog("deleteclassnow","Response", responseData);
         return responseData;
 
     }
@@ -469,7 +513,7 @@ public class MainController {
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("findallsubjects","Response", responseData);
         return responseData;
     }
     
@@ -481,7 +525,9 @@ public class MainController {
     	try {
 			byteArray = IOUtils.toByteArray(request.getInputStream());
 			String kemuyouhuijson = ParseUtil.ParseString(byteArray);
+			
 			LogUtil.AuthTitlLog("addsubject","Request", kemuyouhuijson);
+			
 	        List data = AssistFunUtil.KemuyouhuiToList(kemuyouhuijson);
         	Kemu rekemu = campusService.insertKemu((Kemu)data.get(0));
         	instusuccess = campusService.insertDankeyouhui(rekemu,(JSONArray)data.get(1));
@@ -492,9 +538,8 @@ public class MainController {
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-        System.out.println(responseData);
+    	LogUtil.AuthTitlLog("addsubject","Response", responseData);
     	return responseData;
     }
     
@@ -513,7 +558,7 @@ public class MainController {
 		}else{
 			responseData = ResponseUtil.buildErrorResponse(0, "添加失败", null);
 		}
-		
+		LogUtil.AuthTitlLog("addstuclass","Response", responseData);
         return responseData;
     }
     
@@ -535,7 +580,7 @@ public class MainController {
             e.printStackTrace();
             responseData = ResponseUtil.buildSystemErrorResponse();
         }
-    	
+    	LogUtil.AuthTitlLog("findallstuclasses","Response", responseData);
     	return responseData;
     }
     @SuppressWarnings({ "unchecked", "unused" })
@@ -545,7 +590,9 @@ public class MainController {
     	byte[] byteArray = IOUtils.toByteArray(request.getInputStream());
     	HashMap<Integer, CacheKecheng> xuankes = null;
         String data = ParseUtil.ParseString(byteArray);
-        System.out.println("元数据："+data);
+        
+        LogUtil.AuthTitlLog("cacheapplyclasses","Request", data);
+        
         CacheKecheng cachekecheng = gson.fromJson(data, CacheKecheng.class);
     	if(xuexuankemap.containsKey(xueshengid)){
     		xuankes = (HashMap<Integer, CacheKecheng>)xuexuankemap.get(xueshengid);
@@ -572,7 +619,7 @@ public class MainController {
         	responseData = ResponseUtil.buildErrorResponse(0, "选课失败", null);
         
     
-        System.out.println(responseData);
+        LogUtil.AuthTitlLog("cacheapplyclasses","Response", responseData);
         return responseData;
     }
     
@@ -597,7 +644,7 @@ public class MainController {
         	responseData =  ResponseUtil.buildSuccessResponse("选课成功",rexuankelist);
         else
         	responseData = ResponseUtil.buildErrorResponse(0, "选课失败", null);
-        System.out.println(responseData);
+        LogUtil.AuthTitlLog("delcacheapplyclass","Response", responseData);
         return responseData;
     }
     

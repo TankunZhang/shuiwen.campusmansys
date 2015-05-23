@@ -19,17 +19,21 @@
         select xs.id,xs.xiaoquid,xq.xq_mingzi,xs.xingming,xs.xingbie,xs.cs_riqi,xs.dizhi,xs.gd_dianhua,xs.mq_shouji,xs.fq_shouji,xs.youeryuan,xs.zhaopian,xs.jingli,xs.beizhu
         from KEMU xs,XIAOQU xq where xs.xiaoquid = xq.id and xs.id = #{id}
     </select>
-   
+   <select id="findDankeyouhuiByKemu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.Dankeyouhui">
+        select *
+		from DANKEYOUHUI 
+		where kemuid=#{kemuid}
+    </select>
 	<insert id="insertKemu" parameterType="com.shuiwen.campusys.bean.Kemu">
-       insert into KEMU (xiaoquid,km_mingzi)
-       VALUES (#{xiaoquid},#{km_mingzi})
+       insert into KEMU (xiaoquid,km_mingzi,xueqizhi,keshi)
+       VALUES (#{xiaoquid},#{km_mingzi},#{xueqizhi},#{keshi})
     </insert>
     
     <insert id="insertDankeyouhui" parameterType="ArrayList">
        insert into DANKEYOUHUI (kemuid,xueqishu,zhekou,keshi,zongjia)
        values
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.kemuid},#{item.xueqishu},#{item.zhekou},#{item.keshi},#{item.zongjia})
+            (#{item.kemuid},#{item.xueqishu},#{item.zhekou},#{item.keshi},#{item.zongjia},#{item.zhekoujia})
         </foreach>
     </insert>
     <select id="maxKemuID" resultType="int">

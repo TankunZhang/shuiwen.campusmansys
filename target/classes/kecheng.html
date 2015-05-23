@@ -12,7 +12,7 @@
 
   <hr>
   <div class="row-fluid">  
-  <div class="span2">
+  <div class="span3">
        <div class="widget-box">
     
 		<div class="widget-title">
@@ -29,7 +29,7 @@
         </div>
    </div>
    		
-  	<div class="span10">
+  	<div class="span9">
        <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
             <h5>Data table</h5>
@@ -39,7 +39,7 @@
             <table id="banjisInfoTable" class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>序号</th>
+                  <th class="hide">序号</th>
                   <th>科目</th>
                   <th>班级</th>
                   <th>授课教师</th>
@@ -55,7 +55,7 @@
               </thead>
               <tbody>
                <tr id="banjisInfoTR" class="gradeA">
-                  <td> </td>
+                  <td class="hide"> </td>
                   <td> </td>
                   <td> </td>
                   <td> </td>
@@ -132,12 +132,6 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">课时 :</label>
-              <div class="controls">
-                <input id="keshi" name="keshi" type="text" class="span3" placeholder="" />
-              </div>
-            </div>
-            <div class="control-group">
               <label class="control-label">开课时间:</label>
               <div class="controls">
                 <input id="kk_shijian" name="kk_shijian" class="input-mask-date" type="text" class="span3" placeholder="" />
@@ -149,7 +143,7 @@
                 <select id="zhuangtai" name="zhuangtai" >
 			     	<option value='已开班' >已开班</option>
 			     	<option value='未开班' selected="selected">未开班</option>
-			     	<option value='已删除' selected="selected">已删除</option>
+			     	<option value='已删除'>已删除</option>
 			   	</select>
 			   </div>
             </div>

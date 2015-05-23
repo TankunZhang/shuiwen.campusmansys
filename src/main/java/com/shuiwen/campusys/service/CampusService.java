@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
+import com.shuiwen.campusys.bean.Dankeyouhui;
 import com.shuiwen.campusys.bean.Kecheng;
 import com.shuiwen.campusys.bean.Guanliyuan;
 import com.shuiwen.campusys.bean.Kemu;
@@ -46,6 +47,7 @@ public interface CampusService {
 //    public Kemu validKemu(Kemu kemu);
 //    public int deleteKemu(HashMap kemuid);
     public int insertDankeyouhui(Kemu kemu, JSONArray dankeyouhuiarray);
+    public List<Dankeyouhui> findDankeyouhuiByKemu(HashMap kemumap);
     
     public List<XueshengKecheng> findAllXueshengKechengs(HashMap xiaoqumap);
 //    public XueshengKecheng findXueshengKechengByID(HashMap xueshengkechengid);

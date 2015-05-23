@@ -17,7 +17,7 @@ public class XueshengKechengDAOImpl extends SqlSessionDaoSupport implements Xues
 		for(XueshengKecheng xueshengbanji:listxueshengbanji){
 			doStatus = -1;
 			if(super.getSqlSession().insert("XueshengKechengMapper.insertXueshengKecheng", xueshengbanji)>0){
-				doStatus = super.getSqlSession().insert("BanjiMapper.insertBanjiXueSheng", xueshengbanji.getBanjiid());
+				doStatus = super.getSqlSession().insert("KechengMapper.insertKechengXueSheng", xueshengbanji.getKechengid());
 			}
         }
 		
@@ -42,7 +42,7 @@ public class XueshengKechengDAOImpl extends SqlSessionDaoSupport implements Xues
 			return 0;
 		}
 	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<XueshengKecheng> findAllXueshengKechengs(HashMap xiaoqumap) {
 		// TODO Auto-generated method stub

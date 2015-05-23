@@ -140,18 +140,33 @@ $("document").ready(function() {
 		kemuonchange($(this).val());
 	});
 	
-	function kemuonchange(kumubyid){
-		$("#banjiid").empty();
+	function kemuonchange(kemubyid){
+		$("#kechengid").empty();
 		$.ajax({
 			type : "POST" ,
 			contentType : "application/json;charset=utf-8" ,      				
-			url : "findclassbysubject?kemuid="+kumubyid,
+			url : "findclassbysubject?kemuid="+kemubyid,
 			dataType : "json" ,       					
 			success : function(resultdata){
 				var data = validJson(resultdata);
 				if(data!=-1){
 					$.each(data, function (i, item) { 
-							jQuery("#banjiid").append("<option value="+ item.id+">"+ item.bj_mingzi+"</option>");
+							jQuery("#kechengid").append("<option value="+ item.id+">"+ item.bj_mingzi+"</option>");
+					});
+				}
+			}
+		});
+		$("#xueqishu").empty();
+		$.ajax({
+			type : "POST" ,
+			contentType : "application/json;charset=utf-8" ,      				
+			url : "finddankeyouhuibysubject?kemuid="+kemubyid,
+			dataType : "json" ,       					
+			success : function(resultdata){
+				var data = validJson(resultdata);
+				if(data!=-1){
+					$.each(data, function (i, item) { 
+							jQuery("#xueqishu").append("<option value="+ item.xueqishu+">"+ item.xueqishu+" ; ￥"+item.zhekoujia+"</option>");
 					});
 				}
 			}
@@ -163,7 +178,7 @@ $("document").ready(function() {
 		if(xueshengid>0){
 		$('#xuankeid').val(0);
 		var postdata = "{\"id\":"+$("#xuankeid").val()+",\"kemuid\":"+$("#kemuid").val()+",\"km_mingzi\":\""+$("#kemuid").find("option:selected").text()+
-		"\",\"banjiid\":"+$("#banjiid").val()+",\"bj_mingzi\":\""+$("#banjiid").find("option:selected").text()+"\",\"xueqishu\":"+$("#xueqishu").val()+"}";
+		"\",\"kechengid\":"+$("#kechengid").val()+",\"bj_mingzi\":\""+$("#kechengid").find("option:selected").text()+"\",\"xueqishu\":"+$("#xueqishu").val()+"}";
 		$.ajax({
 			type : "POST" ,
 			contentType : "application/json;charset=utf-8" ,      				
@@ -186,9 +201,9 @@ $("document").ready(function() {
 	function showingtable(data){
 		stuttr.show();
 		$.each(data, function(index,item){    
-			if($("#"+item.banjiid).length>0){
-				$("#"+item.banjiid).show();
-				var clonedTr = $("#"+item.banjiid);
+			if($("#"+item.kechengid).length>0){
+				$("#"+item.kechengid).show();
+				var clonedTr = $("#"+item.kechengid);
 	            //循环遍历cloneTr的每一个td元素，并赋值  
 	              clonedTr.children("td").each(function(inner_index){  
 	                 //根据索引为每一个td赋值  
@@ -207,7 +222,7 @@ $("document").ready(function() {
 	           });//end children.each  
 			}else{
 				var clonedTr = stuttr.clone();
-	              clonedTr.attr('id',item.banjiid);
+	              clonedTr.attr('id',item.kechengid);
 	            //循环遍历cloneTr的每一个td元素，并赋值  
 	              clonedTr.children("td").each(function(inner_index){  
 	                 //根据索引为每一个td赋值  
@@ -245,17 +260,17 @@ $("document").ready(function() {
 	}
 	
 	$('#tablekecheng tbody').on( 'click', 'button', function () {
-        var banjiid = $(this).parents('tr').eq(0).attr('id');
+        var kechengid = $(this).parents('tr').eq(0).attr('id');
         var xueshengid = $("#id").val();
         $.ajax({
     		type : "POST" ,
     		contentType : "application/json;charset=utf-8" ,      				
-    		url : "delcacheapplyclass?xueshengid="+xueshengid+"&banjiid="+banjiid,
+    		url : "delcacheapplyclass?xueshengid="+xueshengid+"&kechengid="+kechengid,
     		dataType : "json" ,       					
     		success : function(resultdata){
     			var data = validJson(resultdata);
     			if(data!=0){
-    				$("#"+banjiid).hide();
+    				$("#"+kechengid).hide();
     			}
     		}
     	});
@@ -268,7 +283,7 @@ $("document").ready(function() {
 			$.ajax({
 				type : "POST" ,
 				contentType : "application/json" ,      				
-				url : "addstuclass?xueshengid="+xueshengid+"&shoukuanren="+$('#shoukuanren').val(),
+				url : "addstuclass?xueshengid="+xueshengid+"&shoukuanren='酱油'",
 				dataType : "json" ,       					
 				success : function(resultdata){
 					var data = validJson(resultdata);

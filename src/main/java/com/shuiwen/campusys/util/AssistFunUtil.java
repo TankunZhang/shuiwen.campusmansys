@@ -26,7 +26,7 @@ public class AssistFunUtil {
             XueshengKecheng xueshengkecheng = new XueshengKecheng();
             
             xueshengkecheng.setXueshengid(xueshengid);
-            xueshengkecheng.setBanjiid(cachekecheng.getKechengid());
+            xueshengkecheng.setKechengid(cachekecheng.getKechengid());
             xueshengkecheng.setBj_mingzi(cachekecheng.getBj_mingzi());
             xueshengkecheng.setShoukuanren(shoukuanren);
             
@@ -35,12 +35,13 @@ public class AssistFunUtil {
 		return reXueshengKecheng;
 	}
 	
-	public static List KemuyouhuiToList(String kemuyouhuijson){
+	public static List<Object> KemuyouhuiToList(String kemuyouhuijson){
 		JSONObject kemuObject = JSON.parseObject(kemuyouhuijson);
 		Kemu kemu = new Kemu();
 		kemu.setKm_mingzi(kemuObject.getString("km_mingzi"));
 		kemu.setXueqizhi(kemuObject.getIntValue("xueqizhi"));
 		kemu.setXiaoquid(kemuObject.getIntValue("xiaoquid"));
+		kemu.setKeshi(kemuObject.getIntValue("keshi"));
 		
 		JSONArray dankeyouhuiArray = kemuObject.getJSONArray("dankeyouhui");
 		

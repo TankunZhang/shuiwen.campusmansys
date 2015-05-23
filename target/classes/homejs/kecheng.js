@@ -14,7 +14,7 @@ $("document").ready(function() {
 				if(data!=0){
 					$.each(data, function (i, item) { 
 						jQuery("#kemuid").append("<option value="+ item.id+">"+ item.km_mingzi+"</option>");
-						jQuery('#collapseOne').prepend("<div class='widget-content' id="+item.id+">"+item.km_mingzi+"</div>");
+						jQuery('#collapseOne').prepend("<div class='widget-content' id="+item.id+"><bold>"+item.km_mingzi+"</bold> ; "+item.xueqizhi+"学期制"+" ; "+item.keshi+"课时每期"+"</div>");
 					});
 				}
 			}
@@ -152,7 +152,6 @@ $("document").ready(function() {
 		$('#bj_mingzi').val(data.bj_mingzi);
 		$('#sk_jiaoshi').val(data.sk_jiaoshi);
 		$('#sk_shijian').val(data.sk_shijian);
-		$('#keshi').val(data.keshi);
 		$('#kk_shijian').val(data.kk_shijian);
 		$('#zhuangtai').val(data.zhuangtai);
 		$('#zd_renshu').val(data.zd_renshu);
@@ -183,7 +182,6 @@ $("document").ready(function() {
 	$('#addbanji').click(function() {
 		$("#id").val(-1);
 		$('#sk_jiaoshi').val("");
-		$('#keshi').val("");
 		$('#zd_renshu').val("");
 		
 		$('#btndeleteSubmit').hide();

@@ -9,6 +9,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.shuiwen.campusys.bean.Dankeyouhui;
+import com.shuiwen.campusys.bean.Kecheng;
 import com.shuiwen.campusys.bean.Kemu;
 import com.shuiwen.campusys.dao.KemuDAO;
 
@@ -105,6 +106,11 @@ public class KemuDAOImpl extends SqlSessionDaoSupport implements KemuDAO {
 		// TODO Auto-generated method stub
 		Kemu backkemu = (Kemu) super.getSqlSession().selectOne("KemuMapper.validKemu", kemu);
 		return backkemu;
+	}
+	@Override
+	public List<Dankeyouhui> findDankeyouhuiByKemu(HashMap kemumap) {
+		// TODO Auto-generated method stub
+		return (List<Dankeyouhui>) super.getSqlSession().selectList("KemuMapper.findDankeyouhuiByKemu",kemumap);
 	}
 
 	

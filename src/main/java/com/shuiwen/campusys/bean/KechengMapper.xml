@@ -28,12 +28,14 @@
    
 	<insert id="insertKecheng" parameterType="com.shuiwen.campusys.bean.Kecheng">
        insert into KECHENG (kemuid,xueqi,bj_mingzi,sk_jiaoshi,sk_shijian,keshi,kk_shijian,zhuangtai,zd_renshu)
-       VALUES (#{kemuid},#{xueqi},#{bj_mingzi},#{sk_jiaoshi},#{sk_shijian},#{keshi},#{kk_shijian},#{zhuangtai},#{zd_renshu})
+       VALUES (#{kemuid},#{xueqi},#{bj_mingzi},#{sk_jiaoshi},#{sk_shijian},
+       (select keshi from dankeyouhui where kemuid=#{kemuid} and xueqishu=1)
+       ,#{kk_shijian},#{zhuangtai},#{zd_renshu})
     </insert>
     
     <update id="updateKecheng" parameterType="com.shuiwen.campusys.bean.Kecheng">
        update KECHENG 
-       set kemuid=#{kemuid},xueqi=#{xueqi},bj_mingzi=#{bj_mingzi},sk_jiaoshi=#{sk_jiaoshi},sk_shijian=#{sk_shijian},keshi=#{keshi},kk_shijian=#{kk_shijian},zhuangtai=#{zhuangtai},zd_renshu=#{zd_renshu}
+       set kemuid=#{kemuid},xueqi=#{xueqi},bj_mingzi=#{bj_mingzi},sk_jiaoshi=#{sk_jiaoshi},sk_shijian=#{sk_shijian},kk_shijian=#{kk_shijian},zhuangtai=#{zhuangtai},zd_renshu=#{zd_renshu}
        where id = #{id}
     </update>
     

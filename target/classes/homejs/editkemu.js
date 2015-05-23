@@ -36,10 +36,10 @@ $("document").ready(function() {
                           	  $(this).html(zongjia);  
                               break; 
                           case(6):  
-                          	  $(this).attr('id',"zhekoujia"+i);
+                        	  $(this).html("<input type=\"text\" id=\"zhekoujia"+i+"\" style=\"width: 40px;\" >");
                               break; 
                           case(7):  
-                        	  $(this).html("<input type=\"text\" id=\"zhekou"+i+"\" class=\"zhekou\" style=\"width: 40px;\" value=\"090%\" >");  
+                        	  $(this).html("<input type=\"text\" id=\"zhekou"+i+"\" class=\"zhekou\" style=\"width: 40px;\" value=\"100%\" >");  
                           break;
                           
                     }//end switch                          
@@ -65,9 +65,34 @@ $("document").ready(function() {
 	});
 	
 	$('#rejisuan').click(function(){
-		setdankeyouhui = "{\"km_mingzi\":\""+huancun.km_mingzi+"\",\"xiaoquid\":"+$('#indexxiaoqu').val()+",\"xueqizhi\":"+huancun.xueqizhi+",\"dankeyouhui\":[";
 		zongjia = 0;
 		var zhekouzongjia = 0;
+		for(var i=1;i<huancun.xueqizhi+1;i++){
+	        var clonedTr = $("#"+i);
+	        clonedTr.children("td").each(function(inner_index){  
+	               //根据索引为每一个td赋值  
+	        	var zhekoushu = $("#zhekou"+i).val().split("%")[0];
+                     switch(inner_index){  
+	                  case(3):  
+	                	  zongjia = zongjia+huancun.morenkeshi*$("#danjia"+i).val();
+	                      $(this).html(huancun.morenkeshi*$("#danjia"+i).val());  
+	                      break; 
+	                  case(4):  
+	                      $(this).html(huancun.morenkeshi*i);  
+	                      break; 
+	                  case(5):  
+	                  	  $(this).html(zongjia);  
+	                      break; 
+	                  case(6):  
+	                	  $("#zhekoujia"+i).val(zongjia*zhekoushu/100);
+	                      break; 
+                    }//end switch                          
+		     });//end children.each  
+		 }//end $each  
+	});
+	
+	$('#setdankeyouhui').click(function(){
+		setdankeyouhui = "{\"km_mingzi\":\""+huancun.km_mingzi+"\",\"xiaoquid\":"+$('#indexxiaoqu').val()+",\"xueqizhi\":"+huancun.xueqizhi+",\"keshi\":"+huancun.morenkeshi+",\"dankeyouhui\":[";
 		for(var i=1;i<huancun.xueqizhi+1;i++){
 			if(i!=1){
 				setdankeyouhui = setdankeyouhui+","
@@ -77,8 +102,7 @@ $("document").ready(function() {
 	        //循环遍历cloneTr的每一个td元素，并赋值  
 	        clonedTr.children("td").each(function(inner_index){  
 	               //根据索引为每一个td赋值  
-	        	var zhekoushu = $("#zhekou"+i).val().split("%")[0];
-                     switch(inner_index){  
+                switch(inner_index){  
                      case(0):  
                 	   		setdankeyouhui =setdankeyouhui + "{\"xueqishu\":"+$(this).html()+","; 
                    		break; 
@@ -88,19 +112,11 @@ $("document").ready(function() {
                      case(2):  
                  	    setdankeyouhui = setdankeyouhui +  "\"danjia\":"+$("#danjia"+i).val()+","; 
            				break;
-	                  case(3):  
-	                	  zongjia = zongjia+huancun.morenkeshi*$("#danjia"+i).val();
-	                      $(this).html(huancun.morenkeshi*$("#danjia"+i).val());  
-	                      break; 
-	                  case(4):  
-	                      $(this).html(huancun.morenkeshi*i);  
-	                      break; 
 	                  case(5):  
 	                	  setdankeyouhui = setdankeyouhui + "\"zongjia\":"+zongjia+","; 
-	                  	  $(this).html(zongjia);  
 	                      break; 
 	                  case(6):  
-	                  	  $(this).html(zongjia*zhekoushu/100);  
+	                  	setdankeyouhui = setdankeyouhui + "\"zhekoujia\":"+ $("#zhekoujia"+i).val()+","; 
 	                      break; 
 	                  case(7):  
                     	  setdankeyouhui = setdankeyouhui + "\"zhekou\":"+zhekoushu+"}"; 
@@ -109,9 +125,6 @@ $("document").ready(function() {
 		     });//end children.each  
 		 }//end $each  
 		setdankeyouhui = setdankeyouhui + "]}";
-	});
-	
-	$('#setdankeyouhui').click(function(){
 		alert(setdankeyouhui);
 		if($('#zhekoujia1').html().length>0){
 			$.ajax({
@@ -130,7 +143,7 @@ $("document").ready(function() {
 				}     			
 			});
 		}else{
-			alert('请清算！');
+			alert('请统计计算！');
 		}
 	});
 	

@@ -10,16 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.google.gson.Gson;
-import com.shuiwen.campusys.bean.Kecheng;
+import com.shuiwen.campusys.bean.Dankeyouhui;
 import com.shuiwen.campusys.bean.Guanliyuan;
+import com.shuiwen.campusys.bean.Kecheng;
 import com.shuiwen.campusys.bean.Kemu;
 import com.shuiwen.campusys.bean.Xiaoqu;
 import com.shuiwen.campusys.bean.XueSheng;
 import com.shuiwen.campusys.bean.XueshengKecheng;
-import com.shuiwen.campusys.dao.KechengDAO;
 import com.shuiwen.campusys.dao.GuanliyuanDAO;
+import com.shuiwen.campusys.dao.KechengDAO;
 import com.shuiwen.campusys.dao.KemuDAO;
 import com.shuiwen.campusys.dao.XiaoquDAO;
 import com.shuiwen.campusys.dao.XueShengDAO;
@@ -44,9 +43,6 @@ public class CampusServiceImpl implements CampusService {
     @Autowired
     private XueshengKechengDAO xueshengkechengDAO;
     
-    private static Gson gson = new Gson();
-    
-
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
     public static SimpleDateFormat hourFormat = new SimpleDateFormat("HH");
     public static SimpleDateFormat minutesFormat = new SimpleDateFormat("mm");
@@ -231,6 +227,11 @@ public class CampusServiceImpl implements CampusService {
 	public int insertDankeyouhui(Kemu kemu, JSONArray dankeyouhuiarray) {
 		// TODO Auto-generated method stub
 		return kemuDAO.insertDankeyouhui(kemu, dankeyouhuiarray);
+	}
+	@Override
+	public List<Dankeyouhui> findDankeyouhuiByKemu(HashMap kemumap) {
+		// TODO Auto-generated method stub
+		return kemuDAO.findDankeyouhuiByKemu(kemumap);
 	}
 	
 	@Override

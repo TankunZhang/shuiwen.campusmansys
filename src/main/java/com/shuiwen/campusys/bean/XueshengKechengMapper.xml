@@ -13,12 +13,12 @@
     <select id="findAllXueshengKechengs" resultType="com.shuiwen.campusys.bean.XueshengKecheng">
         select xsbj.*,xs.xingming,bj.bj_mingzi 
         from XUESHENG_KECHENG xsbj,XUESHENG xs,KECHENG bj 
-        where xsbj.xueshengid = xs.id and xsbj.banjiid = bj.id
+        where xsbj.xueshengid = xs.id and xsbj.kechengid = bj.id
     </select>
     <select id="findAllXueshengKechengsByXiaoqu" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.XueshengKecheng">
         select xsbj.*,xs.xingming,bj.bj_mingzi 
         from XUESHENG_KECHENG xsbj,XUESHENG xs,KECHENG bj 
-        where xsbj.xueshengid = xs.id and xsbj.banjiid = bj.id and xs.xiaoquid = #{xiaoquid}
+        where xsbj.xueshengid = xs.id and xsbj.kechengid = bj.id and xs.xiaoquid = #{xiaoquid}
     </select>
     <select id="findXueshengKechengByID" parameterType="hashmap" resultType="com.shuiwen.campusys.bean.XueshengKecheng">
         select xs.id,xs.xiaoquid,xq.xq_mingzi,xs.xingming,xs.xingbie,xs.cs_riqi,xs.dizhi,xs.gd_dianhua,xs.mq_shouji,xs.fq_shouji,xs.youeryuan,xs.zhaopian,xs.jingli,xs.beizhu
@@ -26,11 +26,11 @@
     </select>
    
 	<insert id="insertXueshengKecheng" parameterType="com.shuiwen.campusys.bean.XueshengKecheng">
-       insert into XUESHENG_KECHENG (xueshengid,banjiid,shoukuanren)
-       values(#{xueshengid},#{banjiid},#{shoukuanren})
+       insert into XUESHENG_KECHENG (xueshengid,kechengid,shoukuanren)
+       values(#{xueshengid},#{kechengid},#{shoukuanren})
        <!-- 好方法，却不能用 
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.xueshengid},#{item.banjiid},#{item.shoukuanren})
+            (#{item.xueshengid},#{item.kechengid},#{item.shoukuanren})
         </foreach>
         -->
     </insert>
