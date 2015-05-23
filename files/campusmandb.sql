@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50041
 File Encoding         : 65001
 
-Date: 2015-05-21 20:54:12
+Date: 2015-05-23 21:18:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,33 +52,27 @@ CREATE TABLE `dankeyouhui` (
   `id` int(11) NOT NULL auto_increment,
   `kemuid` int(11) NOT NULL,
   `xueqishu` int(11) NOT NULL,
-  `zhekou` float NOT NULL default '0',
   `keshi` int(11) default '0',
+  `danjia` int(11) default '0',
   `zongjia` float default '0',
+  `zhekoujia` float default '0',
+  `zhekou` float NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dankeyouhui
 -- ----------------------------
-INSERT INTO `dankeyouhui` VALUES ('4', '20', '1', '100', '16', '2880');
-INSERT INTO `dankeyouhui` VALUES ('5', '20', '2', '100', '16', '5760');
-INSERT INTO `dankeyouhui` VALUES ('6', '20', '3', '98', '16', '8800');
-INSERT INTO `dankeyouhui` VALUES ('7', '20', '4', '90', '16', '12000');
-INSERT INTO `dankeyouhui` VALUES ('8', '21', '1', '100', '16', '2880');
-INSERT INTO `dankeyouhui` VALUES ('9', '21', '2', '100', '16', '5760');
-INSERT INTO `dankeyouhui` VALUES ('10', '21', '3', '100', '16', '8640');
-INSERT INTO `dankeyouhui` VALUES ('11', '21', '4', '98', '16', '11520');
-INSERT INTO `dankeyouhui` VALUES ('12', '21', '5', '90', '16', '14720');
-INSERT INTO `dankeyouhui` VALUES ('13', '22', '1', '100', '18', '1800');
-INSERT INTO `dankeyouhui` VALUES ('14', '22', '2', '100', '18', '3600');
-INSERT INTO `dankeyouhui` VALUES ('15', '22', '3', '100', '18', '5400');
-INSERT INTO `dankeyouhui` VALUES ('16', '22', '4', '100', '18', '7200');
-INSERT INTO `dankeyouhui` VALUES ('17', '22', '5', '100', '18', '9000');
-INSERT INTO `dankeyouhui` VALUES ('18', '22', '6', '100', '18', '10800');
-INSERT INTO `dankeyouhui` VALUES ('19', '22', '7', '98', '18', '12600');
-INSERT INTO `dankeyouhui` VALUES ('20', '22', '8', '95', '18', '14400');
-INSERT INTO `dankeyouhui` VALUES ('21', '22', '9', '90', '18', '16200');
+INSERT INTO `dankeyouhui` VALUES ('22', '23', '1', '18', '160', '2880', '2880', '100');
+INSERT INTO `dankeyouhui` VALUES ('23', '23', '2', '18', '160', '5760', '5760', '100');
+INSERT INTO `dankeyouhui` VALUES ('24', '23', '3', '18', '160', '8640', '8400', '98');
+INSERT INTO `dankeyouhui` VALUES ('25', '23', '4', '18', '160', '11700', '11100', '95');
+INSERT INTO `dankeyouhui` VALUES ('26', '24', '1', '17', '160', '2720', '2700', '100');
+INSERT INTO `dankeyouhui` VALUES ('27', '24', '2', '17', '160', '5440', '5400', '100');
+INSERT INTO `dankeyouhui` VALUES ('28', '24', '3', '17', '160', '8160', '8000', '98');
+INSERT INTO `dankeyouhui` VALUES ('29', '24', '4', '17', '160', '10880', '10500', '96');
+INSERT INTO `dankeyouhui` VALUES ('30', '24', '5', '17', '160', '13940', '13300', '95');
+INSERT INTO `dankeyouhui` VALUES ('31', '24', '6', '17', '160', '16660', '15000', '90');
 
 -- ----------------------------
 -- Table structure for `guanliyuan`
@@ -135,12 +129,14 @@ CREATE TABLE `kecheng` (
   `zd_renshu` int(11) default '0',
   `dq_renshu` int(11) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kecheng
 -- ----------------------------
-INSERT INTO `kecheng` VALUES ('11', '20', '15B', '舞蹈15B1', '陈某，李某', '星期天', '18', '2015-09-20  13:00:00', '未开班', '25', '0');
+INSERT INTO `kecheng` VALUES ('15', '23', '15B', '舞蹈15B1', '金某', '星期六', '18', '2015-09-20  13:00:00', '未开班', '30', '1');
+INSERT INTO `kecheng` VALUES ('16', '23', '15B', '舞蹈15B2', '张某', '星期六', '18', '2015-09-12  13:00:00', '已开班', '27', '0');
+INSERT INTO `kecheng` VALUES ('17', '24', '15B', '足球15B1', '王某', '星期六', '17', '2015-09-18  09:30:00', '已开班', '30', '2');
 
 -- ----------------------------
 -- Table structure for `kemu`
@@ -154,14 +150,13 @@ CREATE TABLE `kemu` (
   `keshi` int(11) default '0',
   `danjia` float default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of kemu
 -- ----------------------------
-INSERT INTO `kemu` VALUES ('20', '15', '舞蹈', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('21', '15', '国画', '0', '0', '0');
-INSERT INTO `kemu` VALUES ('22', '15', '足球', '0', '0', '0');
+INSERT INTO `kemu` VALUES ('23', '15', '舞蹈', '4', '18', '0');
+INSERT INTO `kemu` VALUES ('24', '15', '足球', '6', '17', '0');
 
 -- ----------------------------
 -- Table structure for `xiaoqu`
@@ -204,7 +199,7 @@ CREATE TABLE `xuesheng` (
   `jingli` varchar(255) default NULL,
   `beizhu` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xuesheng
@@ -212,6 +207,8 @@ CREATE TABLE `xuesheng` (
 INSERT INTO `xuesheng` VALUES ('16', '2', '史诗儿', '女', '1991-09-04', '绿庭45号601', '', '18602164489', '13671556616', '', null, null, '', '');
 INSERT INTO `xuesheng` VALUES ('2', '1', '郑绍辉', '男', '2009-12-02', '绿庭17号2702', '67752338', '13817169438', '13564401728', null, null, null, '好样的', '');
 INSERT INTO `xuesheng` VALUES ('3', '3', '起坤', '男', '1991-09-04', '海事大学', '', '18221105276', '', null, null, null, '很好', '');
+INSERT INTO `xuesheng` VALUES ('19', '15', '起坤', '男', '1991-09-04', '临港新城海港大道', '', '', '', '海事', null, null, '', '');
+INSERT INTO `xuesheng` VALUES ('20', '15', '陈军', '男', '1991-09-04', '临港新城1550', '18221105276', '', '', '海事幼儿园', null, null, '', '');
 INSERT INTO `xuesheng` VALUES ('13', '2', '敦耀', '男', '1991-09-04', '临港新城', '', '', '', '', null, null, '', '');
 INSERT INTO `xuesheng` VALUES ('18', '3', '陈军', '男', '1991-09-04', '临港新城', '178223443', '', '', '海事', null, null, '', '');
 
@@ -222,7 +219,7 @@ DROP TABLE IF EXISTS `xuesheng_kecheng`;
 CREATE TABLE `xuesheng_kecheng` (
   `id` int(11) NOT NULL auto_increment,
   `xueshengid` int(11) default NULL,
-  `banjiid` int(11) default NULL,
+  `kechengid` int(11) default NULL,
   `xuefei` float default '0',
   `shoukuanren` varchar(255) default NULL,
   `queqinliang` int(11) default '0',
@@ -230,8 +227,11 @@ CREATE TABLE `xuesheng_kecheng` (
   `pingjia` varchar(300) default NULL,
   `sy_xueqi` int(11) default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xuesheng_kecheng
 -- ----------------------------
+INSERT INTO `xuesheng_kecheng` VALUES ('25', '20', '17', '0', '何某', '0', null, null, '0');
+INSERT INTO `xuesheng_kecheng` VALUES ('26', '19', '17', '0', '\'酱油\'', '0', null, null, '0');
+INSERT INTO `xuesheng_kecheng` VALUES ('27', '19', '15', '0', '\'酱油\'', '0', null, null, '0');
