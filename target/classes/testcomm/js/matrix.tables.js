@@ -1,15 +1,15 @@
 
 $(document).ready(function(){
 	
-	$('.data-table').dataTable({
-		"bJQueryUI": true,
-		"sPaginationType": "full_numbers",
-		"sDom": '<""l>t<"F"fp>'
-	});
+//	$('.data-table').dataTable({
+//		"bJQueryUI": true,
+//		"sPaginationType": "full_numbers",
+//		"sDom": '<""l>t<"F"fp>'
+//	});
 	
 //	$('input[type=checkbox],input[type=radio],input[type=file]').uniform();
 //	
-//	$('select').select2();
+	$('select').select2();
 //	
 //	$("span.icon input:checkbox, th input:checkbox").click(function() {
 //		var checkedStatus = this.checked;

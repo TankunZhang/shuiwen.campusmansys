@@ -2,6 +2,7 @@ package com.shuiwen.campusys.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -528,7 +529,7 @@ public class MainController {
 			
 			LogUtil.AuthTitlLog("addsubject","Request", kemuyouhuijson);
 			
-	        List data = AssistFunUtil.KemuyouhuiToList(kemuyouhuijson);
+	        List<Object> data = AssistFunUtil.KemuyouhuiToList(kemuyouhuijson);
         	Kemu rekemu = campusService.insertKemu((Kemu)data.get(0));
         	instusuccess = campusService.insertDankeyouhui(rekemu,(JSONArray)data.get(1));
 			if(instusuccess>0){
@@ -646,6 +647,27 @@ public class MainController {
         	responseData = ResponseUtil.buildErrorResponse(0, "选课失败", null);
         LogUtil.AuthTitlLog("delcacheapplyclass","Response", responseData);
         return responseData;
+    }
+    
+	@RequestMapping(value="/updatedankeyouhui")
+    @ResponseBody
+    public String UpdateDankeyouhui(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    	byte[] byteArray;
+    	int instusuccess = -1;
+		byteArray = IOUtils.toByteArray(request.getInputStream());
+		String kemuyouhuijson = ParseUtil.ParseString(byteArray);
+		
+		LogUtil.AuthTitlLog("updatedankeyouhui","Request", kemuyouhuijson);
+		
+        List<Dankeyouhui> dankeyouhuis = JSONArray.parseArray(kemuyouhuijson,Dankeyouhui.class);
+    	instusuccess = campusService.updateDankeyouhui(dankeyouhuis);
+		if(instusuccess>0){
+			responseData =  ResponseUtil.buildSuccessResponse("添加成功",1);
+		}else{
+			responseData = ResponseUtil.buildErrorResponse(0, "请求失败", null);
+		}
+    	LogUtil.AuthTitlLog("updatedankeyouhui","Response", responseData);
+    	return responseData;
     }
     
     

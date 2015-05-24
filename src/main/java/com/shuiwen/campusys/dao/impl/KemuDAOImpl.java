@@ -44,7 +44,8 @@ public class KemuDAOImpl extends SqlSessionDaoSupport implements KemuDAO {
 			dankeyouhui.setXueqishu(dankeyouhuiobject.getIntValue("xueqishu"));
 			dankeyouhui.setZhekou(dankeyouhuiobject.getFloatValue("zhekou"));
 			dankeyouhui.setZongjia(dankeyouhuiobject.getFloatValue("zongjia"));
-			System.out.println(dankeyouhui.getKemuid()+";"+dankeyouhui.getKeshi()+";"+dankeyouhui.getXueqishu()+";"+dankeyouhui.getZhekou());
+			dankeyouhui.setDanjia(dankeyouhuiobject.getIntValue("danjia"));
+			dankeyouhui.setZhekoujia(dankeyouhuiobject.getFloatValue("zhekoujia"));
 			dankeyouhuilist.add(dankeyouhui);
 		}
 		try{
@@ -107,10 +108,27 @@ public class KemuDAOImpl extends SqlSessionDaoSupport implements KemuDAO {
 		Kemu backkemu = (Kemu) super.getSqlSession().selectOne("KemuMapper.validKemu", kemu);
 		return backkemu;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Dankeyouhui> findDankeyouhuiByKemu(HashMap kemumap) {
 		// TODO Auto-generated method stub
 		return (List<Dankeyouhui>) super.getSqlSession().selectList("KemuMapper.findDankeyouhuiByKemu",kemumap);
+	}
+	@Override
+	public int updateDankeyouhui(List<Dankeyouhui> dankeyouhuilist){
+		doStatus = 0;
+		try{
+			if(super.getSqlSession().delete("KemuMapper.deleteDankeyouhui", dankeyouhuilist.get(0).getKemuid())>0){
+				doStatus = super.getSqlSession().insert("KemuMapper.insertDankeyouhui", dankeyouhuilist);
+			}
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+		if(doStatus>0){
+			return 1;
+		}else{
+			return 0;
+		}
 	}
 
 	

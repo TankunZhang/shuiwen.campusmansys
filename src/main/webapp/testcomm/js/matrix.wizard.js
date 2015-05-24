@@ -2,10 +2,10 @@
 $(document).ready(function(){
 	
 	$("#form-wizard").formwizard({ 
-		formPluginEnabled: true,
-		validationEnabled: true,
-		focusFirstInput : true,
-		disableUIStyles : true,
+		formPluginEnabled: false,
+		validationEnabled: false,
+		focusFirstInput : false,
+		disableUIStyles : false,
 	
 		formOptions :{
 			success: function(data){$("#status").fadeTo(500,1,function(){ $(this).html("<span>Form was submitted!</span>").fadeTo(5000, 0); })},

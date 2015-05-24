@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50041
 File Encoding         : 65001
 
-Date: 2015-05-23 21:18:15
+Date: 2015-05-24 21:17:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -58,21 +58,36 @@ CREATE TABLE `dankeyouhui` (
   `zhekoujia` float default '0',
   `zhekou` float NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dankeyouhui
 -- ----------------------------
-INSERT INTO `dankeyouhui` VALUES ('22', '23', '1', '18', '160', '2880', '2880', '100');
-INSERT INTO `dankeyouhui` VALUES ('23', '23', '2', '18', '160', '5760', '5760', '100');
-INSERT INTO `dankeyouhui` VALUES ('24', '23', '3', '18', '160', '8640', '8400', '98');
-INSERT INTO `dankeyouhui` VALUES ('25', '23', '4', '18', '160', '11700', '11100', '95');
+INSERT INTO `dankeyouhui` VALUES ('39', '23', '1', '18', '180', '11880', '11300', '95');
+INSERT INTO `dankeyouhui` VALUES ('38', '23', '2', '18', '160', '11880', '8500', '98');
+INSERT INTO `dankeyouhui` VALUES ('37', '23', '3', '18', '160', '11880', '5800', '100');
+INSERT INTO `dankeyouhui` VALUES ('36', '23', '4', '18', '160', '11880', '2900', '100');
 INSERT INTO `dankeyouhui` VALUES ('26', '24', '1', '17', '160', '2720', '2700', '100');
 INSERT INTO `dankeyouhui` VALUES ('27', '24', '2', '17', '160', '5440', '5400', '100');
 INSERT INTO `dankeyouhui` VALUES ('28', '24', '3', '17', '160', '8160', '8000', '98');
 INSERT INTO `dankeyouhui` VALUES ('29', '24', '4', '17', '160', '10880', '10500', '96');
 INSERT INTO `dankeyouhui` VALUES ('30', '24', '5', '17', '160', '13940', '13300', '95');
 INSERT INTO `dankeyouhui` VALUES ('31', '24', '6', '17', '160', '16660', '15000', '90');
+
+-- ----------------------------
+-- Table structure for `duokeyouhui`
+-- ----------------------------
+DROP TABLE IF EXISTS `duokeyouhui`;
+CREATE TABLE `duokeyouhui` (
+  `id` int(11) NOT NULL auto_increment,
+  `kemushu` int(11) NOT NULL default '0',
+  `zhekou` float NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of duokeyouhui
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `guanliyuan`
@@ -157,6 +172,21 @@ CREATE TABLE `kemu` (
 -- ----------------------------
 INSERT INTO `kemu` VALUES ('23', '15', '舞蹈', '4', '18', '0');
 INSERT INTO `kemu` VALUES ('24', '15', '足球', '6', '17', '0');
+
+-- ----------------------------
+-- Table structure for `kemucengci`
+-- ----------------------------
+DROP TABLE IF EXISTS `kemucengci`;
+CREATE TABLE `kemucengci` (
+  `id` int(11) NOT NULL auto_increment,
+  `cc_mingzi` varchar(255) NOT NULL,
+  `kemus` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of kemucengci
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `xiaoqu`

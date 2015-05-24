@@ -8,7 +8,7 @@ public class Dankeyouhui {
 	private int keshi;
 	private float zongjia;
 	private float zhekoujia;
-	
+
 	public int getKemuid() {
 		return kemuid;
 	}

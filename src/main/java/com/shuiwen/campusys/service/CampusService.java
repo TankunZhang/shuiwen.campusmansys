@@ -48,6 +48,7 @@ public interface CampusService {
 //    public int deleteKemu(HashMap kemuid);
     public int insertDankeyouhui(Kemu kemu, JSONArray dankeyouhuiarray);
     public List<Dankeyouhui> findDankeyouhuiByKemu(HashMap kemumap);
+    public int updateDankeyouhui(List<Dankeyouhui> dankeyouhuis);
     
     public List<XueshengKecheng> findAllXueshengKechengs(HashMap xiaoqumap);
 //    public XueshengKecheng findXueshengKechengByID(HashMap xueshengkechengid);

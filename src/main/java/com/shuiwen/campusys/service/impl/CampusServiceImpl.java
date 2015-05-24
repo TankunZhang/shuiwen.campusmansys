@@ -233,6 +233,13 @@ public class CampusServiceImpl implements CampusService {
 		// TODO Auto-generated method stub
 		return kemuDAO.findDankeyouhuiByKemu(kemumap);
 	}
+	@Override
+	public int updateDankeyouhui(List<Dankeyouhui> dankeyouhuis){
+		return kemuDAO.updateDankeyouhui(dankeyouhuis);
+	}
+	
+	
+	
 	
 	@Override
 	public int insertXueshengKecheng(List<XueshengKecheng> xueshengkecheng) {

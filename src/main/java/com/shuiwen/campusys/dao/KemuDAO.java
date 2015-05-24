@@ -26,5 +26,7 @@ public interface KemuDAO {
     
     public List<Dankeyouhui> findDankeyouhuiByKemu(HashMap kemumap);
     
+    public int updateDankeyouhui(List<Dankeyouhui> dankeyouhuis);
+    
 
 }

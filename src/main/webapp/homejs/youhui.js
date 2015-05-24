@@ -35,6 +35,9 @@ $("document").ready(function() {
 				if(data!=-1){
 					huancunxueqizhi = data.length;
 					setyouhui(data);
+					$("#editkemutable").show();
+					$("#opendankeyouhui").hide();
+					$("#closedankeyouhui").show();
 				}
 			}
 		});
@@ -114,7 +117,7 @@ function setyouhui(kemudata){
 		zongjia = 0;
 		var zhekouzongjia = 0;
 		
-		for(var i=1;i<huancunxueqizhi;i++){
+		for(var i=0;i<huancunxueqizhi;i++){
 	        var clonedTr = $("#"+i);
 	        //循环遍历cloneTr的每一个td元素，并赋值  
 	        clonedTr.children("td").each(function(inner_index){  
@@ -137,62 +140,69 @@ function setyouhui(kemudata){
                     }//end switch                          
 		     });//end children.each  
 		 }//end $each  
-		setdankeyouhui = setdankeyouhui + "]}";
 	});
 	
-	$('#setdankeyouhui').click(function(){
-		setdankeyouhui = "{\"km_mingzi\":\""+huancun.km_mingzi+"\",\"xiaoquid\":"+$('#indexxiaoqu').val()+",\"xueqizhi\":"+huancun.xueqizhi+",\"keshi\":"+huancun.morenkeshi+",\"dankeyouhui\":[";
-		for(var i=1;i<huancun.xueqizhi+1;i++){
-			if(i!=1){
-				setdankeyouhui = setdankeyouhui+","
+	$('#updatedankeyouhui').click(function(){
+		updatedankeyouhui = "[";
+		for(var i=0;i<huancunxueqizhi;i++){
+			if(i!=0){
+				updatedankeyouhui = updatedankeyouhui+","
 			}
 			//克隆tr，每次遍历都可以产生新的tr                              
 	        var clonedTr = $("#"+i);
 	        //循环遍历cloneTr的每一个td元素，并赋值  
 	        clonedTr.children("td").each(function(inner_index){  
 	               //根据索引为每一个td赋值  
+	        	var zhekoushu = $("#zhekou"+i).val().split("%")[0];
                 switch(inner_index){  
                      case(0):  
-                	   		setdankeyouhui =setdankeyouhui + "{\"xueqishu\":"+$(this).html()+","; 
+                	   		updatedankeyouhui =updatedankeyouhui + "{\"kemuid\":"+$("#kemuid").val()+",\"xueqishu\":"+$(this).html()+","; 
                    		break; 
                      case(1):  
-                 	    setdankeyouhui = setdankeyouhui + "\"keshi\":"+$(this).html()+","; 
+                 	    updatedankeyouhui = updatedankeyouhui + "\"keshi\":"+$(this).html()+","; 
              			break;
                      case(2):  
-                 	    setdankeyouhui = setdankeyouhui +  "\"danjia\":"+$("#danjia"+i).val()+","; 
+                 	    updatedankeyouhui = updatedankeyouhui +  "\"danjia\":"+$("#danjia"+i).val()+","; 
            				break;
 	                  case(5):  
-	                	  setdankeyouhui = setdankeyouhui + "\"zongjia\":"+zongjia+","; 
+	                	  updatedankeyouhui = updatedankeyouhui + "\"zongjia\":"+zongjia+","; 
 	                      break; 
 	                  case(6):  
-	                  	setdankeyouhui = setdankeyouhui + "\"zhekoujia\":"+ $("#zhekoujia"+i).val()+","; 
+	                  	updatedankeyouhui = updatedankeyouhui + "\"zhekoujia\":"+ $("#zhekoujia"+i).val()+","; 
 	                      break; 
 	                  case(7):  
-                    	  setdankeyouhui = setdankeyouhui + "\"zhekou\":"+zhekoushu+"}"; 
+                    	  updatedankeyouhui = updatedankeyouhui + "\"zhekou\":"+zhekoushu+"}"; 
                           break;
                     }//end switch                          
 		     });//end children.each  
 		 }//end $each  
-		setdankeyouhui = setdankeyouhui + "]}";
-		if($('#zhekoujia1').html().length>0){
+		updatedankeyouhui = updatedankeyouhui + "]";
+		alert(updatedankeyouhui);
 			$.ajax({
 				type : "POST" ,
 				contentType : "application/json" ,      				
-				url : "addsubject",
-				data: setdankeyouhui,
+				url : "updatedankeyouhui",
+				data: updatedankeyouhui,
 				dataType : "json" ,       					
 				success : function(resultdata){
 					var data = validJson(resultdata);
 					if(data!=-1){
-						alert("科目添加成功成功");
-//						$("#content").load("kecheng.html");
+						alert("修改成功");
 					}
 					
 				}     			
 			});
-		}else{
-			alert('请统计计算！');
-		}
+	});
+	
+	$("#closedankeyouhui").click(function(){
+		$("#editkemutable").hide();
+		$(this).hide();
+		$("#opendankeyouhui").show();
+	});
+	$("#opendankeyouhui").click(function(){
+		$("#editkemutable").show();
+		$(this).hide();
+		$("#closedankeyouhui").show();
 	});
 
 	function validJson(resultdata){

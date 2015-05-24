@@ -101,6 +101,7 @@ $("document").ready(function() {
 	        var clonedTr = $("#"+i);
 	        //循环遍历cloneTr的每一个td元素，并赋值  
 	        clonedTr.children("td").each(function(inner_index){  
+	        	var zhekoushu = $("#zhekou"+i).val().split("%")[0];
 	               //根据索引为每一个td赋值  
                 switch(inner_index){  
                      case(0):  
@@ -126,25 +127,25 @@ $("document").ready(function() {
 		 }//end $each  
 		setdankeyouhui = setdankeyouhui + "]}";
 		alert(setdankeyouhui);
-		if($('#zhekoujia1').html().length>0){
-			$.ajax({
-				type : "POST" ,
-				contentType : "application/json" ,      				
-				url : "addsubject",
-				data: setdankeyouhui,
-				dataType : "json" ,       					
-				success : function(resultdata){
-					var data = validJson(resultdata);
-					if(data!=-1){
-						alert("科目添加成功成功");
-						$("#content").load("kecheng.html");
-					}
-					
-				}     			
-			});
-		}else{
-			alert('请统计计算！');
-		}
+//		if($('#zhekoujia1').html().length>0){
+//			$.ajax({
+//				type : "POST" ,
+//				contentType : "application/json" ,      				
+//				url : "addsubject",
+//				data: setdankeyouhui,
+//				dataType : "json" ,       					
+//				success : function(resultdata){
+//					var data = validJson(resultdata);
+//					if(data!=-1){
+//						alert("科目添加成功成功");
+//						$("#content").load("kecheng.html");
+//					}
+//					
+//				}     			
+//			});
+//		}else{
+//			alert('请统计计算！');
+//		}
 	});
 	
 	

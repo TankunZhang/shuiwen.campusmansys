@@ -30,21 +30,25 @@
     </insert>
     
     <insert id="insertDankeyouhui" parameterType="ArrayList">
-       insert into DANKEYOUHUI (kemuid,xueqishu,zhekou,keshi,zongjia)
+       insert into DANKEYOUHUI (kemuid,xueqishu,zhekou,keshi,danjia,zongjia,zhekoujia)
        values
         <foreach collection="list" item="item" index="index" separator=",">
-            (#{item.kemuid},#{item.xueqishu},#{item.zhekou},#{item.keshi},#{item.zongjia},#{item.zhekoujia})
+            (#{item.kemuid},#{item.xueqishu},#{item.zhekou},#{item.keshi},#{item.danjia},#{item.zongjia},#{item.zhekoujia})
         </foreach>
     </insert>
+    <delete id="deleteDankeyouhui" parameterType="int">
+    	delete from DANKEYOUHUI where kemuid = #{kemuid}
+    </delete>
+    
     <select id="maxKemuID" resultType="int">
        select max(id) from KEMU
     </select>
     
-    <insert id="updateKemu" parameterType="com.shuiwen.campusys.bean.Kemu">
+    <update id="updateKemu" parameterType="com.shuiwen.campusys.bean.Kemu">
        update KEMU 
        set xiaoquid=#{xiaoquid},xingming=#{xingming},xingbie=#{xingbie},cs_riqi=#{cs_riqi},dizhi=#{dizhi},gd_dianhua=#{gd_dianhua},mq_shouji=#{mq_shouji},fq_shouji=#{fq_shouji},youeryuan=#{youeryuan},zc_shijian=#{zc_shijian},beizhu=#{beizhu},zhaopian=#{zhaopian},jingli=#{jingli}
        where id = #{id}
-    </insert>
+    </update>
 
 	<delete id="deleteKemu" parameterType="hashmap">
 	    delete from KEMU where ID=#{id}
